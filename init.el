@@ -205,35 +205,26 @@
 ;; Ivy, Counsel and Swiper ######################################################
 
 (use-package ivy
-  :diminish ; Does not show the mode in the mode line
-  :bind
-  (("C-s" . swiper)
-   :map ivy-minibuffer-map
-   ("TAB" . ivy-alt-done)
-   ("C-l" . ivy-alt-done)
-   ("C-j" . ivy-next-line)
-   ("C-k" . ivy-previous-line)
-   :map ivy-switch-buffer-map
-   ("C-k" . ivy-previous-line)
-   ("C-l" . ivy-done)
-   ("C-d" . ivy-switch-buffer-kill)
-   :map ivy-reverse-i-search-map
-   ("C-k" . ivy-previous-line)
-   ("C-d" . ivy-reverse-i-search-kill))
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
   :config
-  (setq ivy-ignore-buffers '("\\` " "~" "\\`\\*tramp/"))
-  (ivy-mode 1))
+  (ivy-mode t))
 
 (use-package counsel
   :after ivy
-  :bind
-  (("M-x" . counsel-M-x)
-   ("C-x b" . counsel-ibuffer)
-   ("C-x C-f" . counsel-find-file)
-   :map minibuffer-local-map
-   ("C-r" . 'counsel-minibuffer-history))
   :config
-  (counsel-mode 1))
+  (counsel-mode t))
 
 (use-package swiper
   :after ivy)
@@ -241,7 +232,7 @@
 (use-package ivy-rich
   :after ivy
   :init
-  (ivy-rich-mode 1))
+  (ivy-rich-mode t))
 
 ;; LSP ##########################################################################
 
@@ -290,7 +281,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lsp-ivy lsp-ui lsp-mode ivy-rich counsel ivy elixir-mode visual-fill-column emmet-mode evil-numbers evil-surround evil-commentary evil-collection evil doom-themes doom-modeline use-package)))
+   '(ivy-rich counsel ivy elixir-mode visual-fill-column emmet-mode evil-numbers evil-surround evil-commentary evil-collection evil doom-themes doom-modeline use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
