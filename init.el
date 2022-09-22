@@ -1,4 +1,4 @@
-;;; UI ##########################################################################
+;; UI ##########################################################################
 
 ;; Clean up UI
 (tool-bar-mode 0)    ; Hide toolbar
@@ -36,7 +36,7 @@
 ;; Relative line numbers
 (global-display-line-numbers-mode t)
 (setq-default display-line-numbers-type 'relative)
-(set-face-foreground 'line-number "#505049")
+(set-face-foreground 'line-number "#505050")
 
 ;; Diable line numbers to certain modes
 (dolist (mode '(term-mode-hook
@@ -89,7 +89,7 @@
 (use-package doom-modeline
     :ensure t
     :init
-    (doom-modeline-mode 1)
+    (doom-modeline-mode t)
     :custom
     (doom-modeline-height 10))
 
@@ -134,7 +134,7 @@
   ;(define-key evil-normal-state-map (kbd "C-p") nil)
   ;; Removed to be used by
   ;(define-key evil-normal-state-map (kbd "C-n") nil)
-  (evil-mode 1))
+  (evil-mode t))
 
 ;; Evil - Must Have #############################################################
 
@@ -150,7 +150,7 @@
     :after
     evil
     :config
-    (evil-commentary-mode 1))
+    (evil-commentary-mode t))
 
 ;; Evil Surround (emulate tim pope)
 (use-package evil-surround
@@ -196,7 +196,7 @@
   (setq-default visual-fill-column-width 101)
   (setq-default visual-fill-column-center-text t)
   :config
-  (global-visual-fill-column-mode 1))
+  (global-visual-fill-column-mode t))
 
 ;; Syntax HightLight ############################################################
 
@@ -222,47 +222,49 @@
   (ivy-mode t))
 
 (use-package counsel
-  :after ivy
+  :bind (("M-x" . counsel-M-x)
+         ("C-x b" . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history))
   :config
   (counsel-mode t))
 
-(use-package swiper
-  :after ivy)
+(use-package swiper)
 
 (use-package ivy-rich
-  :after ivy
   :init
   (ivy-rich-mode t))
 
 ;; LSP ##########################################################################
 
-;; (use-package lsp-mode
-;;   :config
-;;   (setq lsp-clients-elixir-server-executable "~/software/elixir-ls/language_server.sh")
-;;   :init
-;;   (setq lsp-keymap-prefix "C-c l")
-;;   :hook
-;;   (elixir-mode . lsp-defered)
-;;   ;(lsp-mode . lsp-enable-which-key-integration)
-;;   :commands
-;;   (lsp lsp-defered))
+(use-package lsp-mode
+  :config
+  (setq lsp-clients-elixir-server-executable "~/software/elixir-ls/language_server.sh")
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook
+  (elixir-mode . lsp-defered)
+  ;(lsp-mode . lsp-enable-which-key-integration)
+  :commands
+  (lsp lsp-defered))
 
-;; (use-package lsp-ui
-;;   :after
-;;   lsp-mode
-;;   :hook
-;;   (lsp-mode . lsp-ui-mode)
-;;   :custom
-;;   (lsp-ui-doc-position 'bottom)
-;;   (lsp-ui-doc-delay 1.5)
-;;   :commands
-;;   lsp-ui-mode)
+(use-package lsp-ui
+  :after
+  lsp-mode
+  :hook
+  (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom)
+  (lsp-ui-doc-delay 1.5)
+  :commands
+  lsp-ui-mode)
 
-;; (use-package lsp-ivy
-;;   :after
-;;   lsp-mode
-;;   :commands
-;;   lsp-ivy-workspace-symbol)
+(use-package lsp-ivy
+  :after
+  lsp-mode
+  :commands
+  lsp-ivy-workspace-symbol)
 
 ;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 ;; optionally if you want to use debugger
@@ -273,15 +275,13 @@
 ;    :config
 ;    (which-key-mode))
 
-;; Custom #######################################################################
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ivy-rich counsel ivy elixir-mode visual-fill-column emmet-mode evil-numbers evil-surround evil-commentary evil-collection evil doom-themes doom-modeline use-package)))
+   '(lsp-ivy lsp-ui lsp-mode ivy-rich counsel ivy elixir-mode visual-fill-column emmet-mode evil-numbers evil-surround evil-commentary evil-collection evil use-package doom-themes doom-modeline)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
