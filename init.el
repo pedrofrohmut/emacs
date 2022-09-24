@@ -45,6 +45,7 @@
 
 ;; Hightlight Matching parens on hover
 (show-paren-mode t)
+(electric-pair-mode t)
 
 ;; Disable backup files
 (setq make-backup-files nil)
@@ -52,10 +53,18 @@
 ;; Show cursor position in the status bar
 (setq column-number-mode t)
 
+;; Tabs
+(setq tab-bar-new-tab-choice "*scratch*")
+(setq tab-bar-new-tab-to 'rightmost)
+(setq tab-bar-close-button-show nil)
+(setq tab-bar-new-button-show nil)
+
 ;; Keybinds #####################################################################
 
 ; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "C-c d")    'cd)
+(global-set-key (kbd "C-c C-d")  'cd)
 
 (global-unset-key (kbd "C-h"))  ; Can still use help with F1
 (global-unset-key (kbd "C-l"))  ; Can use evil zz 
@@ -131,9 +140,18 @@
   (define-key evil-normal-state-map (kbd "C-k")
     (lambda () (interactive) (evil-scroll-line-up 12)))
   ;; Removed to be used by projectile
-  ;(define-key evil-normal-state-map (kbd "C-p") nil)
+  (define-key evil-normal-state-map (kbd "C-p") nil)
   ;; Removed to be used by
-  ;(define-key evil-normal-state-map (kbd "C-n") nil)
+  (define-key evil-normal-state-map (kbd "C-n") nil)
+
+  ;; Resize Windows
+  (define-key evil-normal-state-map (kbd "<up>") 'evil-window-increase-height)
+  (define-key evil-normal-state-map (kbd "<down>") 'evil-window-decrease-height)
+  (define-key evil-normal-state-map (kbd "<right>") 'evil-window-increase-width)
+  (define-key evil-normal-state-map (kbd "<left>") 'evil-window-decrease-width)
+
+  ;; LSP - TODO
+
   (evil-mode t))
 
 ;; Evil - Must Have #############################################################
@@ -169,6 +187,57 @@
   ;; Evil Decrease hovered number
   (define-key evil-normal-state-map (kbd "C-=") 'evil-numbers/inc-at-pt))
 
+;; Keymap #######################################################################
+
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1))
+
+(use-package general
+  :config
+  (general-evil-setup t))
+
+(general-nmap
+  :prefix "SPC"
+  "SPC" '(counsel-M-x :which-key "M-x")
+  ;; Buffers
+  "b"   '(:igonre t :which-key "Buffers")
+  "b b" '(ibuffer :which-key "IBuffer")
+  "b n" '(next-buffer :which-key "Next Buffer")
+  "b p" '(previous-buffer :which-key "Previous Buffer")
+  "b k" '(kill-buffer :which-key "Kill Buffer")
+  "b d" '(kill-current-buffer :which-key "Kill Current Buffer")
+  ;; Files
+  "f"   '(:ignore t :which-key "Files")
+  "f f" '(counsel-find-file :which-key "Find File")
+  "f d" '(counsel-dired :which-key "DirEd")
+  "f s" '(save-buffer :which-key "Save Buffer")
+  ;; Projectile
+  "p"   '(projectile-command-map :which-key "Projectile Commands")
+  ;; Tabs
+  "t"   '(:ignore t :which-key "Tabs")
+  "t l" '(tab-move :which-key "Go Next")
+  "t h" '((lambda () (interactive) (tab-move -1)) :which-key "Go Previous")
+  "t c" '(tab-new :which-key "New Tab")
+  "t q" '(tab-close :which-key "Close Current")
+  "t o" '(tab-close-other :which-key "Close Others")
+  "t u" '(tab-undo :which-key "Undo Close Tab")
+  "t r" '(tab-rename :which-key "Rename")
+  ;; Window
+  "w"   '(:ignore t :which-key "Window")
+  "w c" '(evil-window-delete :which-key "Close Window")
+  "w q" '(evil-window-delete :which-key "Close Window")
+  "w s" '(evil-window-split :which-key "Split")
+  "w v" '(evil-window-vsplit :which-key "Vertical Split")
+  "w h" '(evil-window-left :which-key "Go Left")
+  "w j" '(evil-window-down :which-key "Go Down")
+  "w k" '(evil-window-up :which-key "Go Up")
+  "w l" '(evil-window-right :which-key "Go Right")
+  "w r" '(evil-window-rotate-downwards :which-key "Rotate")
+  "w o" '(delete-other-windows :which-key "Close Others"))
+ 
 ;; Emmet ########################################################################
 
 (use-package emmet-mode
@@ -197,10 +266,6 @@
   (setq-default visual-fill-column-center-text t)
   :config
   (global-visual-fill-column-mode t))
-
-;; Syntax HightLight ############################################################
-
-(use-package elixir-mode)
 
 ;; Ivy, Counsel and Swiper ######################################################
 
@@ -236,18 +301,72 @@
   :init
   (ivy-rich-mode t))
 
+;; Install the required fonts with: M-x all-the-icons-install-fonts
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+;; Projectile ###################################################################
+
+(use-package projectile
+  :diminish
+  projectile-mode
+  :init
+  (setq projectile-project-search-path '("~/programming/" "~/dotfiles/"))
+  (setq projectile-switch-project-action #'projectile-dired)
+  :config
+  (projectile-mode 1)
+  :custom
+  (projectile-completion-system 'ivy)
+  :bind (:map projectile-mode-map
+              ("C-q" . projectile-find-file)
+              ("C-c p" . projectile-command-map)))
+
+(use-package counsel-projectile
+  :config
+  (counsel-projectile-mode))
+
+;; Helpful ######################################################################
+
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command]  . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key]      . helpful-key))
+
+;; Syntax HightLight ############################################################
+
+(use-package tree-sitter)
+(use-package tree-sitter-langs)
+(use-package tree-sitter-indent)
+
+(use-package csharp-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode))
+  :mode "\\.cs\\'"
+  :hook
+  (csharp-mode . lsp-deferred))
+
+(use-package elixir-mode
+  :config
+  (setq lsp-clients-elixir-server-executable "~/software/elixir-ls/language_server.sh")
+  :hook
+  (elixir-mode . lsp-deferred))
+
 ;; LSP ##########################################################################
 
 (use-package lsp-mode
-  :config
-  (setq lsp-clients-elixir-server-executable "~/software/elixir-ls/language_server.sh")
+  ;; :config
+  ;; (setq lsp-clients-elixir-server-executable "~/software/elixir-ls/language_server.sh")
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook
-  (elixir-mode . lsp-defered)
-  ;(lsp-mode . lsp-enable-which-key-integration)
+  (lsp-mode . lsp-enable-which-key-integration)
   :commands
-  (lsp lsp-defered))
+  (lsp lsp-deferred))
 
 (use-package lsp-ui
   :after
@@ -266,6 +385,18 @@
   :commands
   lsp-ivy-workspace-symbol)
 
+(use-package company
+  :after
+  lsp-mode
+  :hook
+  (prog-mode . company-mode)
+  :bind
+  (:map company-active-map ("<tab" . company-complete-selection))
+  (:map lsp-mode-map ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimun-prefix-length 1)
+  (company-idle-delay 0))
+
 ;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 ;; optionally if you want to use debugger
 ;(use-package dap-mode)
@@ -281,7 +412,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lsp-ivy lsp-ui lsp-mode ivy-rich counsel ivy elixir-mode visual-fill-column emmet-mode evil-numbers evil-surround evil-commentary evil-collection evil use-package doom-themes doom-modeline)))
+   '(company awesome-tab awesome-tabs centaur-tabs counsel-projectile projectile helpful general which-key all-the-icons eletric-pair-mode csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter lsp-ivy lsp-ui lsp-mode ivy-rich counsel ivy elixir-mode visual-fill-column emmet-mode evil-numbers evil-surround evil-commentary evil-collection evil use-package doom-themes doom-modeline)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

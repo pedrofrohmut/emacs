@@ -1,2 +1,5 @@
 elpa/
 transient/
+.cache/
+auto-save-list/
+.lsp-session-v1
