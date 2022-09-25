@@ -12,9 +12,6 @@
 
 ;; Theme & Customization ########################################################
 
-;; Set theme - Comment it in a fresh install or doom-themes not installed
-(load-theme 'doom-tokyo-night t)
-
 ;; Set transparency
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 
@@ -23,15 +20,15 @@
 
 ;; Color Column/Ruler
 (global-display-fill-column-indicator-mode t)
-(setq-default display-fill-column-indicator-column 101)
+(setq-default display-fill-column-indicator-column '(81 101))
 
 ;; Blinking ui as bell
 (setq visible-bell nil)
 
 ;; Tab to 4 spaces
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq indent-line-function 'insert-tab)
+;; (setq-default tab-width 4)
+;; (setq indent-line-function 'insert-tab)
 
 ;; Relative line numbers
 (global-display-line-numbers-mode t)
@@ -59,17 +56,7 @@
 (setq tab-bar-close-button-show nil)
 (setq tab-bar-new-button-show nil)
 
-;; Keybinds #####################################################################
-
-; Make ESC quit prompts
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-(global-set-key (kbd "C-c d")    'cd)
-(global-set-key (kbd "C-c C-d")  'cd)
-
-(global-unset-key (kbd "C-h"))  ; Can still use help with F1
-(global-unset-key (kbd "C-l"))  ; Can use evil zz 
-(global-unset-key (kbd "C-j"))  ; Not useful before
-(global-unset-key (kbd "C-k"))  ; Not useful either
+(load "~/.config/emacs/didorgas/keybinds.el")
 
 ;; MELPA ########################################################################
 
@@ -95,149 +82,45 @@
 
 ;; Doom Styling #################################################################
 
-(use-package doom-modeline
-    :ensure t
-    :init
-    (doom-modeline-mode t)
-    :custom
-    (doom-modeline-height 10))
+(use-package doom-themes
+    :config
+    (load-theme 'doom-tokyo-night t))
 
-(use-package doom-themes)
+(use-package doom-modeline
+  :hook
+  (after-init . doom-modeline-mode)
+  :init
+  (setq doom-modeline-height 15))
+
+;; Install the required fonts with: M-x all-the-icons-install-fonts
+(use-package all-the-icons
+  :if (display-graphic-p))
 
 ;; Evil #########################################################################
 
-;; Evil Mode
-(use-package evil
-  :init
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-u-delete t)
-  (setq evil-want-C-i-jump t)
-  (setq evil-want-keybinding nil) ; Evil collection asks for it
-  (setq evil-want-Y-yank-to-eol t)
-  (setq evil-vsplit-window-right t)
-  (setq evil-split-window-below t)
-  (setq evil-cross-lines t)
-  (setq evil-move-beyond-eol t)
-  :config
-  ;; Ctrl-h as backspace
-  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
-  ;; Ctrl-l as delete
-  (define-key evil-insert-state-map (kbd "C-l") 'evil-delete-char)
-  ;; Change tab normal mode (next)
-  (define-key evil-normal-state-map (kbd "C-l") 'tab-next)
-  ;; Change tab normal mode (previous)
-  (define-key evil-normal-state-map (kbd "C-h") 'tab-previous)
-  ;; Easy insert linebreak in normal mode
-  (define-key evil-normal-state-map (kbd "RET") (kbd "i RET <escape>"))
-  ;; Removed to be used by EasyMotion + Sneak
-  (define-key evil-normal-state-map (kbd "s") nil)
-  ;; Removed to be used by EasyMotion + Sneak (reverse)
-  (define-key evil-normal-state-map (kbd "S") nil)
-  ;; Scroll down
-  (define-key evil-normal-state-map (kbd "C-j")
-    (lambda () (interactive) (evil-scroll-line-down 12)))
-  ;; Scroll up
-  (define-key evil-normal-state-map (kbd "C-k")
-    (lambda () (interactive) (evil-scroll-line-up 12)))
-  ;; Removed to be used by projectile
-  (define-key evil-normal-state-map (kbd "C-p") nil)
-  ;; Removed to be used by
-  (define-key evil-normal-state-map (kbd "C-n") nil)
+(load "~/.config/emacs/didorgas/plugins/evil.el")
 
-  ;; Resize Windows
-  (define-key evil-normal-state-map (kbd "<up>") 'evil-window-increase-height)
-  (define-key evil-normal-state-map (kbd "<down>") 'evil-window-decrease-height)
-  (define-key evil-normal-state-map (kbd "<right>") 'evil-window-increase-width)
-  (define-key evil-normal-state-map (kbd "<left>") 'evil-window-decrease-width)
+;; General ######################################################################
 
-  ;; LSP - TODO
+(load "~/.config/emacs/didorgas/plugins/general.el")
 
-  (evil-mode t))
+;; Which Key ####################################################################
 
-;; Evil - Must Have #############################################################
 
-;; Makes evil keys consistent in more places than just evil mode default
-(use-package evil-collection
-  :after
-  evil
-  :config
-  (evil-collection-init))
-
-;; Evil Commentary 'gc<motion>' 'gcc' ...
-(use-package evil-commentary
-    :after
-    evil
-    :config
-    (evil-commentary-mode t))
-
-;; Evil Surround (emulate tim pope)
-(use-package evil-surround
-  :after
-  evil
-  :config
-  (global-evil-surround-mode t))
-
-;; Evil-numbers
-(use-package evil-numbers
-  :after
-  evil
-  :config
-  ;; Evil Increase hovered number
-  (define-key evil-normal-state-map (kbd "C--") 'evil-numbers/dec-at-pt)
-  ;; Evil Decrease hovered number
-  (define-key evil-normal-state-map (kbd "C-=") 'evil-numbers/inc-at-pt))
-
-;; Keymap #######################################################################
+(which-key-setup-side-window-right)
 
 (use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
+  :init
+  (setq which-key-idle-delay 1)
   :config
-  (setq which-key-idle-delay 1))
+  (which-key-mode t))
 
-(use-package general
-  :config
-  (general-evil-setup t))
+;; Ace Jump #####################################################################
 
-(general-nmap
-  :prefix "SPC"
-  "SPC" '(counsel-M-x :which-key "M-x")
-  ;; Buffers
-  "b"   '(:igonre t :which-key "Buffers")
-  "b b" '(ibuffer :which-key "IBuffer")
-  "b n" '(next-buffer :which-key "Next Buffer")
-  "b p" '(previous-buffer :which-key "Previous Buffer")
-  "b k" '(kill-buffer :which-key "Kill Buffer")
-  "b d" '(kill-current-buffer :which-key "Kill Current Buffer")
-  ;; Files
-  "f"   '(:ignore t :which-key "Files")
-  "f f" '(counsel-find-file :which-key "Find File")
-  "f d" '(counsel-dired :which-key "DirEd")
-  "f s" '(save-buffer :which-key "Save Buffer")
-  ;; Projectile
-  "p"   '(projectile-command-map :which-key "Projectile Commands")
-  ;; Tabs
-  "t"   '(:ignore t :which-key "Tabs")
-  "t l" '(tab-move :which-key "Go Next")
-  "t h" '((lambda () (interactive) (tab-move -1)) :which-key "Go Previous")
-  "t c" '(tab-new :which-key "New Tab")
-  "t q" '(tab-close :which-key "Close Current")
-  "t o" '(tab-close-other :which-key "Close Others")
-  "t u" '(tab-undo :which-key "Undo Close Tab")
-  "t r" '(tab-rename :which-key "Rename")
-  ;; Window
-  "w"   '(:ignore t :which-key "Window")
-  "w c" '(evil-window-delete :which-key "Close Window")
-  "w q" '(evil-window-delete :which-key "Close Window")
-  "w s" '(evil-window-split :which-key "Split")
-  "w v" '(evil-window-vsplit :which-key "Vertical Split")
-  "w h" '(evil-window-left :which-key "Go Left")
-  "w j" '(evil-window-down :which-key "Go Down")
-  "w k" '(evil-window-up :which-key "Go Up")
-  "w l" '(evil-window-right :which-key "Go Right")
-  "w r" '(evil-window-rotate-downwards :which-key "Rotate")
-  "w o" '(delete-other-windows :which-key "Close Others"))
- 
+(use-package ace-jump-mode)
+(define-key evil-normal-state-map (kbd "s") 'ace-jump-word-mode)
+(define-key evil-normal-state-map (kbd "S") 'ace-jump-mode-pop-mark)
+
 ;; Emmet ########################################################################
 
 (use-package emmet-mode
@@ -251,8 +134,7 @@
   (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 4)))
   (add-hook 'sgml-mode-hook 'emmet-mode)
   (add-hook 'css-mode-hook  'emmet-mode)
-  (unbind-key "C-j" emmet-mode-keymap)
-  (unbind-key "<C-return>" emmet-mode-keymap)
+  (unbind-key "C-j" emmet-mode-keymap) (unbind-key "<C-return>" emmet-mode-keymap)
   (unbind-key "C-M-<left>" emmet-mode-keymap)
   (unbind-key "C-M-<right>" emmet-mode-keymap)
   :bind
@@ -298,12 +180,8 @@
 (use-package swiper)
 
 (use-package ivy-rich
-  :init
+  :config
   (ivy-rich-mode t))
-
-;; Install the required fonts with: M-x all-the-icons-install-fonts
-(use-package all-the-icons
-  :if (display-graphic-p))
 
 ;; Projectile ###################################################################
 
@@ -327,15 +205,15 @@
 
 ;; Helpful ######################################################################
 
-(use-package helpful
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command]  . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key]      . helpful-key))
+;; (use-package helpful
+;;   :custom
+;;   (counsel-describe-function-function #'helpful-callable)
+;;   (counsel-describe-variable-function #'helpful-variable)
+;;   :bind
+;;   ([remap describe-function] . counsel-describe-function)
+;;   ([remap describe-command]  . helpful-command)
+;;   ([remap describe-variable] . counsel-describe-variable)
+;;   ([remap describe-key]      . helpful-key))
 
 ;; Syntax HightLight ############################################################
 
@@ -346,25 +224,22 @@
 (use-package csharp-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode))
-  :mode "\\.cs\\'"
-  :hook
-  (csharp-mode . lsp-deferred))
+  :mode "\\.cs\\'")
 
 (use-package elixir-mode
-  :config
-  (setq lsp-clients-elixir-server-executable "~/software/elixir-ls/language_server.sh")
-  :hook
-  (elixir-mode . lsp-deferred))
+  :mode "\\.ex\\'")
+  ;; :config
+  ;; (setq lsp-clients-elixir-server-executable "~/software/elixir-ls/language_server.sh"))
 
 ;; LSP ##########################################################################
 
 (use-package lsp-mode
-  ;; :config
-  ;; (setq lsp-clients-elixir-server-executable "~/software/elixir-ls/language_server.sh")
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook
   (lsp-mode . lsp-enable-which-key-integration)
+  (csharp-mode . lsp-deferred)
+  (elixir-mode . lsp-deferred)
   :commands
   (lsp lsp-deferred))
 
@@ -386,16 +261,39 @@
   lsp-ivy-workspace-symbol)
 
 (use-package company
-  :after
-  lsp-mode
-  :hook
-  (prog-mode . company-mode)
-  :bind
-  (:map company-active-map ("<tab" . company-complete-selection))
-  (:map lsp-mode-map ("<tab>" . company-indent-or-complete-common))
+  :bind (("C-n" . company-complete)
+         ("C-<space>" . company-complete)
+         :map company-active-map
+         ("C-n" . company-select-next-or-abort)
+         ("C-p" . company-select-previous-or-abort))
+  :config
+  (global-company-mode t)
   :custom
-  (company-minimun-prefix-length 1)
-  (company-idle-delay 0))
+  (company-idle-delay 0.2)
+  (company-minimun-prefix-length 1))
+
+;; (use-package company
+;;   :after
+;;   lsp-mode
+;;   :hook
+;;   (lsp-mode . company-mode)
+;;   :custom
+;;   (company-minimun-prefix-length 2)
+;;   (company-idle-delay 0))
+
+  ;; :bind ((:map company-active-map
+  ;;              ("<tab>" . company-complete-selection))
+  ;;        (:map lsp-mode-map
+  ;;              ("<tab>" . company-indent-or-complete-common)))
+  ;; :init
+  ;; (setq company-minimun-prefix-length 2)
+  ;; (setq company-idle-delay 0)
+  ;; :config
+  ;; (setq company-minimun-prefix-length 2)
+  ;; (setq company-idle-delay 0))
+
+;; (define-key evil-insert-state-map (kbd "C-p") 'company-select-previous)
+;; (define-key evil-insert-state-map (kbd "C-n") 'company-select-next)
 
 ;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 ;; optionally if you want to use debugger
@@ -411,8 +309,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("60ada0ff6b91687f1a04cc17ad04119e59a7542644c7c59fc135909499400ab8" default))
  '(package-selected-packages
-   '(company awesome-tab awesome-tabs centaur-tabs counsel-projectile projectile helpful general which-key all-the-icons eletric-pair-mode csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter lsp-ivy lsp-ui lsp-mode ivy-rich counsel ivy elixir-mode visual-fill-column emmet-mode evil-numbers evil-surround evil-commentary evil-collection evil use-package doom-themes doom-modeline)))
+   '(company counsel-projectile projectile general which-key all-the-icons eletric-pair-mode csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter lsp-ivy lsp-ui lsp-mode ivy-rich counsel ivy elixir-mode visual-fill-column emmet-mode evil-numbers evil-surround evil-commentary evil-collection evil use-package doom-themes doom-modeline)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

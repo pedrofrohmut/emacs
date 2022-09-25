@@ -1,1 +1,1 @@
-("~/.config/emacs/" "~/programming/mycode/todos-csharp/" "~/programming/learning/learning-elixir/" "~/dotfiles/" "~/")
+("~/.config/emacs/" "~/programming/mycode/todos-csharp/" "~/dotfiles/" "~/" "~/programming/learning/learning-elixir/")
