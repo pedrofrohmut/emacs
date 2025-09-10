@@ -1,5 +1,6 @@
-elpa/
-transient/
-.cache/
-auto-save-list/
-.lsp-session-v1
+*
+
+!.gitignore
+!init.el
+!early-init.el
+!config/
