@@ -20,16 +20,13 @@
                     :inherit nil)
 
 (with-eval-after-load 'eglot
-  ;; Eglot: Code Actions (extremely useful!)
   (define-key eglot-mode-map (kbd "C-c l a") 'eglot-code-actions)
-  ;; Eglot: Rename (also very useful)
   (define-key eglot-mode-map (kbd "C-c l r") 'eglot-rename)
-  ;; Eglot: Show Hover / Documentation
   (define-key eglot-mode-map (kbd "C-c l k") 'eldoc)
-  ;; Flymake: Next Error - Use 'n' for next
   (define-key eglot-mode-map (kbd "C-c l n") 'flymake-goto-next-error)
-  ;; Flymake: Previous Error - Use 'p' for previous
-  (define-key eglot-mode-map (kbd "C-c l p") 'flymake-goto-prev-error))
+  (define-key eglot-mode-map (kbd "C-c l p") 'flymake-goto-prev-error)
+  (define-key eglot-mode-map (kbd "M-n") 'flymake-goto-next-error)
+  (define-key eglot-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 
 ;; Server #######################################################################
 

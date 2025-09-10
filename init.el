@@ -75,3 +75,13 @@
 (load "~/.config/emacs/config/auto-complete.el")
 
 (load "~/.config/emacs/config/languages.el")
+
+(load "~/.config/emacs/config/mini-buffer.el")
+
+(load "~/.config/emacs/config/prescient.el")
+
+(load "~/.config/emacs/config/github.el")
+
+(load "~/.config/emacs/config/visual-fill-column.el")
+
+(load "~/.config/emacs/config/consult.el")
