@@ -85,3 +85,5 @@
 (load "~/.config/emacs/config/visual-fill-column.el")
 
 (load "~/.config/emacs/config/consult.el")
+
+(load "~/.config/emacs/config/avy.el")
