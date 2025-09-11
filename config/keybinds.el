@@ -24,6 +24,8 @@
 ;; Utils
 (keymap-global-set "M-s M-s" 'replace-string)
 (keymap-global-set "C-M-y" 'duplicate-line)
-(keymap-global-set "C-<down>" 'join-line)
 (keymap-global-set "M-o" 'other-window)
+(keymap-global-set "C-<down>" 'join-line)
 (keymap-global-set "C-<up>" 'kill-sexp)
+(keymap-global-set "C-<left>" 'backward-sexp)
+(keymap-global-set "C-<right>" 'forward-sexp)
