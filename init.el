@@ -14,7 +14,8 @@
 (global-hl-line-mode)
 
 ;; Identation
-(setq tab-always-indent nil) ;; Do not insert tab characters
+(setq-default tab-always-indent nil
+              tab-width 4)
 
 ;; Maching highlight
 (show-paren-mode t)
@@ -87,3 +88,5 @@
 (load "~/.config/emacs/config/consult.el")
 
 (load "~/.config/emacs/config/avy.el")
+
+(load "~/.config/emacs/config/dired.el")
