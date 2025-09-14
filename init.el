@@ -14,7 +14,9 @@
 (global-hl-line-mode)
 
 ;; Identation
-(setq-default tab-always-indent nil
+(setq-default indent-tabs-mode nil
+              tab-always-indent nil
+              c-tab-always-indent nil
               tab-width 4)
 
 ;; Maching highlight

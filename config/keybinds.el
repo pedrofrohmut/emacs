@@ -25,7 +25,12 @@
 (keymap-global-set "M-s M-s" 'replace-string)
 (keymap-global-set "C-M-y" 'duplicate-line)
 (keymap-global-set "M-o" 'other-window)
-(keymap-global-set "C-<down>" 'join-line)
-(keymap-global-set "C-<up>" 'kill-sexp)
-(keymap-global-set "C-<left>" 'backward-sexp)
-(keymap-global-set "C-<right>" 'forward-sexp)
+
+;; Easier delete
+(keymap-global-set "C-h" 'delete-backward-char)
+(keymap-global-set "C-<left>" 'backward-kill-word)
+(keymap-global-set "C-l" 'delete-forward-char)
+(keymap-global-set "C-<up>" 'kill-sexp) ;; C-M-k
+
+(keymap-global-set "C-<right>" 'recenter-top-bottom) ;; C-M-l
+(keymap-global-set "C-<down>" 'join-line) ;; C-M-j
