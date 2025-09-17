@@ -5,3 +5,5 @@
 !early-init.el
 !config
 !config/**/*.el
+!README.md
+!emacs-custom.el

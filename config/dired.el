@@ -2,7 +2,9 @@
 
 (setq dired-auto-revert-buffer t
       dired-kill-when-opening-new-dired-buffer t
-      dired-listing-switches "-lhAF --color=auto")
+      dired-listing-switches "-lhAF --color=auto"
+      dired-hide-details-hide-symlink-targets nil
+      dired-dwim-target t)
 
 (require 'dired)
 (keymap-set dired-mode-map "b" 'dired-up-directory)

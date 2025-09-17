@@ -15,8 +15,8 @@
 
 ;; Identation
 (setq-default indent-tabs-mode nil
-              tab-always-indent nil
-              c-tab-always-indent nil
+              tab-always-indent t
+              c-tab-always-indent t
               tab-width 4)
 
 ;; Maching highlight
@@ -48,6 +48,12 @@
 
 ;; Set root dir for project.el
 (setq project-vc-extra-root-markers '(".project.el" ".projectile" ))
+
+;; Close emacs on the extended commands
+
+(defun quit-emacs ()
+  (interactive)
+  (save-buffers-kill-emacs))
 
 ;; Appearance ###################################################################
 

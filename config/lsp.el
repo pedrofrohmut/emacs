@@ -41,6 +41,34 @@
 (add-to-list 'eglot-server-programs
              `(go-mode ,gopls-cmd))
 
+(setq tsserv-cmd
+      (expand-file-name "~/.local/share/nvim/mason/bin/typescript-language-server"))
+
+;; (setq tsserv-cmd
+;;       (expand-file-name "~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript-language-server/lib/cli.mjs"))
+
+(add-to-list 'eglot-server-programs
+             `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode) . (,tsserv-cmd "--stdio")))
+
+(setq omnisharp-cmd
+      (expand-file-name "/home/pedro/.local/share/nvim/mason/packages/omnisharp/OmniSharp"))
+
+(add-to-list 'eglot-server-programs
+             `(csharp-mode . (,omnisharp-cmd "-lsp")))
+             ;; `(csharp-mode . ("Omnisharp" "-lsp")))
+
+;; Flycheck #####################################################################
+
+(use-package flycheck
+  :ensure t
+  :after eglot
+  :hook (eglot-managed-mode-hook . flycheck-mode))
+
+(use-package flycheck-eglot
+  :ensure t
+  :after (flycheck eglot)
+  :config (global-flycheck-eglot-mode t))
+
 ;; Languages ####################################################################
 
 (defun my-ident ()

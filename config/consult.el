@@ -18,7 +18,7 @@
                             "--full-path --color=never --type file")))
     (call-interactively #'consult-fd)))
 
-(keymap-global-set "C-q" #'my/consult-fd-only-files)
+;;(keymap-global-set "C-q" #'my/consult-fd-only-files)
 
 ;; Paste from register (from mini buffer)
 (keymap-global-set "M-s y" 'consult-yank-from-kill-ring)
@@ -26,6 +26,7 @@
 (keymap-global-set "M-s g" 'consult-ripgrep)
 
 (keymap-global-set "M-s l" 'consult-line)
+(keymap-global-set "C-x C-l" 'consult-line)
 
 ;(keymap-global-set "M-q" 'consult-project-buffer)
 ;(keymap-global-set "M-s m" 'consult-minor-mode-menu)
