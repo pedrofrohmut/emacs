@@ -23,8 +23,8 @@
   (define-key eglot-mode-map (kbd "C-c l a") 'eglot-code-actions)
   (define-key eglot-mode-map (kbd "C-c l r") 'eglot-rename)
   (define-key eglot-mode-map (kbd "C-c l k") 'eldoc)
-  (define-key eglot-mode-map (kbd "M-p") 'flycheck-previous-error)
-  (define-key eglot-mode-map (kbd "M-n") 'flycheck-next-error))
+  (define-key eglot-mode-map (kbd "M-p") 'flymake-goto-prev-error)
+  (define-key eglot-mode-map (kbd "M-n") 'flymake-goto-next-error))
 
 ;; Server #######################################################################
 
@@ -48,40 +48,9 @@
 (add-to-list 'eglot-server-programs
              `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode) . (,tsserv-cmd "--stdio")))
 
+;; Looks like it wont work with symlinks
 (setq omnisharp-cmd
       (expand-file-name "/home/pedro/.local/share/nvim/mason/packages/omnisharp/OmniSharp"))
 
 (add-to-list 'eglot-server-programs
              `(csharp-mode . (,omnisharp-cmd "-lsp")))
-             ;; `(csharp-mode . ("Omnisharp" "-lsp")))
-
-;; Flycheck #####################################################################
-
-(use-package flycheck
-  :ensure t
-  :after eglot
-  :hook (eglot-managed-mode-hook . flycheck-mode))
-
-(use-package flycheck-eglot
-  :ensure t
-  :after (flycheck eglot)
-  :config (global-flycheck-eglot-mode t))
-
-;; Languages ####################################################################
-
-(defun my-ident ()
-            (setq indent-tabs-mode nil
-                  tab-width 4
-                  c-basic-offset 4))
-
-;; Golang #######################################################################
-
-(use-package go-mode
-  :ensure t)
-
-;(add-hook 'go-mode-hook #'my-ident)
-(add-hook 'go-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode t
-                  tab-width 2
-                  whitespace-style '(face spaces trailing))))
