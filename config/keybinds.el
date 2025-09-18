@@ -33,11 +33,15 @@
 (keymap-global-set "M-{" #'my/scroll-quarter-page-up)
 (keymap-global-set "M-}" #'my/scroll-quarter-page-down)
 
+;; Windows
+(keymap-global-set "C-x w r" 'window-swap-states)
+
 ;; Utils
 (keymap-global-set "M-s M-s" 'replace-string)
 (keymap-global-set "C-M-y" 'duplicate-line)
 (keymap-global-set "M-o" 'other-window)
 (keymap-global-set "C-q" 'project-find-file)
+(keymap-global-set "C-`" 'quoted-insert)
 (keymap-global-set "C-x f" 'find-file-at-point)
 
 ;; Easier delete

@@ -42,10 +42,6 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;; Set customize file
-(setq custom-file "~/.config/emacs/emacs-custom.el")
-(load custom-file :noerror)
-
 ;; Set root dir for project.el
 (setq project-vc-extra-root-markers '(".project.el" ".projectile" ))
 
@@ -66,7 +62,7 @@
               '(face spaces tabs tab-mark trailing))
 
 (custom-set-faces
- `(whitespace-tab      ((t (:background ,"yellow"))))
+ `(whitespace-tab      ((t (:background ,"red"))))
  `(whitespace-trailing ((t (:background ,"yellow")))))
 
 (global-whitespace-mode t)
@@ -98,3 +94,7 @@
 (load "~/.config/emacs/config/avy.el")
 
 (load "~/.config/emacs/config/dired.el")
+
+;; Set customize file
+(setq custom-file "~/.config/emacs/emacs-custom.el")
+(load custom-file :noerror)

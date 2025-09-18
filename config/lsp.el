@@ -23,10 +23,8 @@
   (define-key eglot-mode-map (kbd "C-c l a") 'eglot-code-actions)
   (define-key eglot-mode-map (kbd "C-c l r") 'eglot-rename)
   (define-key eglot-mode-map (kbd "C-c l k") 'eldoc)
-  (define-key eglot-mode-map (kbd "C-c l n") 'flymake-goto-next-error)
-  (define-key eglot-mode-map (kbd "C-c l p") 'flymake-goto-prev-error)
-  (define-key eglot-mode-map (kbd "M-n") 'flymake-goto-next-error)
-  (define-key eglot-mode-map (kbd "M-p") 'flymake-goto-prev-error))
+  (define-key eglot-mode-map (kbd "M-p") 'flycheck-previous-error)
+  (define-key eglot-mode-map (kbd "M-n") 'flycheck-next-error))
 
 ;; Server #######################################################################
 
@@ -81,4 +79,9 @@
 (use-package go-mode
   :ensure t)
 
-(add-hook 'go-mode-hook #'my-ident)
+;(add-hook 'go-mode-hook #'my-ident)
+(add-hook 'go-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode t
+                  tab-width 2
+                  whitespace-style '(face spaces trailing))))
