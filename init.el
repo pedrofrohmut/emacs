@@ -19,6 +19,9 @@
               c-tab-always-indent t
               tab-width 4)
 
+;; Pairs
+;(electric-pair-mode nil)
+
 ;; Maching highlight
 (show-paren-mode t)
 (setq show-paren-delay 0)
@@ -46,7 +49,6 @@
 (setq project-vc-extra-root-markers '(".project.el" ".projectile" ))
 
 ;; Close emacs on the extended commands
-
 (defun quit-emacs ()
   (interactive)
   (save-buffers-kill-emacs))

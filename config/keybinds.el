@@ -4,9 +4,6 @@
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
-;; Buffers
-(keymap-global-set "M-g b" #'my/switch-to-recent-buffer)
-
 (defun my/scroll-half-page-down ()
   "Scroll half a page down."
   (interactive)
@@ -27,11 +24,35 @@
   (interactive)
   (scroll-down-command (/ (window-body-height) 4)))
 
+(defun my/open-line-up ()
+  "Open a new line on the line up in indentation"
+  (interactive)
+  (previous-line)
+  (move-end-of-line 1)
+  (newline-and-indent))
+
+(defun my/open-line-down ()
+  "Open a new line on the line up in indentation"
+  (interactive)
+  (move-end-of-line 1)
+  (newline-and-indent))
+
+(defun my/open-line-down2 ()
+  "Open a new line on the line up in indentation"
+  (interactive)
+  (newline-and-indent)
+  (previous-line)
+  (move-end-of-line 1)
+  (newline-and-indent))
+
 ;; Scrolling
 (keymap-global-set "M-[" #'my/scroll-half-page-up)
 (keymap-global-set "M-]" #'my/scroll-half-page-down)
 (keymap-global-set "M-{" #'my/scroll-quarter-page-up)
 (keymap-global-set "M-}" #'my/scroll-quarter-page-down)
+
+;; Buffers
+(keymap-global-set "M-g b" #'my/switch-to-recent-buffer)
 
 ;; Windows
 (keymap-global-set "C-x w r" 'window-swap-states)
@@ -43,6 +64,10 @@
 (keymap-global-set "C-q" 'project-find-file)
 (keymap-global-set "C-`" 'quoted-insert)
 (keymap-global-set "C-x f" 'find-file-at-point)
+
+(keymap-global-set "C-M-o" #'my/open-line-up)
+(keymap-global-set "C-o" #'my/open-line-down)
+(keymap-global-set "C-j" #'my/open-line-down2)
 
 ;; Easier delete
 (keymap-global-set "C-h" 'delete-backward-char)
