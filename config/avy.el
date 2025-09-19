@@ -1,4 +1,5 @@
 (use-package avy
+  :defer t
   :ensure t)
 
 (keymap-global-set "C-'" 'avy-goto-word-1)

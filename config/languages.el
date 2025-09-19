@@ -21,6 +21,10 @@
 (setq c-basic-offset 4)
 (setq c-hanging-braces-alist '(substatement-open . (after)))
 
+;; CSharp #######################################################################
+
+(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . html-mode))
+
 ;; Markdown #####################################################################
 
 (use-package markdown-mode
@@ -41,10 +45,10 @@
 (use-package web-mode
   :ensure t)
 
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
 
 (setq web-mode-markup-indent-offset 2
       web-mode-css-indent-offset 4
@@ -52,6 +56,8 @@
 
 (use-package emmet-mode
   :ensure t)
+
+(keymap-unset emmet-mode-keymap "C-j")
 
 (keymap-global-set "C-; j" 'emmet-expand-line)
 

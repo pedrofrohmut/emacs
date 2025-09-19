@@ -2,6 +2,7 @@
 
 (use-package symbols-outline
   :ensure t
+  :defer t
   :bind ("C-c i" . symbols-outline-show)
   :init
   (add-hook 'eglot-managed-mode-hook

@@ -39,9 +39,9 @@
 (add-to-list 'eglot-server-programs
              `(go-mode ,gopls-cmd))
 
+;; TODO: Check if it will work with symlink (the full path is commented below)
 (setq tsserv-cmd
       (expand-file-name "~/.local/share/nvim/mason/bin/typescript-language-server"))
-
 ;; (setq tsserv-cmd
 ;;       (expand-file-name "~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript-language-server/lib/cli.mjs"))
 
@@ -54,3 +54,18 @@
 
 (add-to-list 'eglot-server-programs
              `(csharp-mode . (,omnisharp-cmd "-lsp")))
+
+
+;; Debug ########################################################################
+
+(use-package dap-mode
+  :ensure t
+  :config
+  (require 'dap-netcore)
+  (dap-mode 1)
+  ;; The modes below are optional
+  (dap-ui-mode 1)
+  (dap-tooltip-mode 1)      ;; Enables mouse hover support
+  (tooltip-mode 1)          ;; Use tooltips for mouse hover
+  (dap-ui-controls-mode 1)  ;; Displays floating panel with debug buttons
+  )
