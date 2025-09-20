@@ -7,7 +7,7 @@
  '(global-whitespace-mode t)
  '(package-selected-packages
    '(avy cape consult corfu-prescient dap-mode dap-netcore diff-hl doom-themes emmet emmet-mode go-mode json-mode marginalia markdown-mode
-         orderless symbols-outline vertico-prescient visual-fill-column web-mode yaml-mode)))
+         orderless surround symbols-outline undo-tree vertico-prescient visual-fill-column web-mode yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

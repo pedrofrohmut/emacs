@@ -64,6 +64,7 @@
 (keymap-global-set "C-q" 'project-find-file)
 (keymap-global-set "C-`" 'quoted-insert)
 (keymap-global-set "C-x f" 'find-file-at-point)
+(keymap-global-set "C-." 'repeat)
 
 (keymap-global-set "C-M-o" #'my/open-line-up)
 (keymap-global-set "C-o" #'my/open-line-down)

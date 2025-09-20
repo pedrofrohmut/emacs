@@ -1,5 +1,6 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
 (package-initialize)
 
@@ -18,6 +19,9 @@
               tab-always-indent t
               c-tab-always-indent t
               tab-width 4)
+
+;; Delete the selected text when start typing
+(delete-selection-mode 1)
 
 ;; Pairs
 ;(electric-pair-mode nil)
@@ -68,6 +72,21 @@
  `(whitespace-trailing ((t (:background ,"yellow")))))
 
 (global-whitespace-mode t)
+
+;; Undo Tree ####################################################################
+
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode)
+  (setq undo-tree-visualizer-timestamps t)
+  (setq undo-tree-auto-save-history t))
+
+;; Surround #####################################################################
+
+(use-package surround
+  :ensure t
+  :bind-keymap ("C-," . surround-keymap))
 
 ;; Loading  #####################################################################
 
