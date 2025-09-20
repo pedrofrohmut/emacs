@@ -116,6 +116,8 @@
 
 (load "~/.config/emacs/config/dired.el")
 
+(load "~/.config/emacs/config/treemacs.el")
+
 ;; Set customize file
 (setq custom-file "~/.config/emacs/emacs-custom.el")
 (load custom-file :noerror)

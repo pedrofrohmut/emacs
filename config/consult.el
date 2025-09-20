@@ -8,6 +8,7 @@
 ;; Set root dir for project.el
 (setq project-vc-extra-root-markers '(".project.el" ".projectile" ))
 
+;; TODO: This function is maybe not needed anymore
 (defun my/consult-fd-only-files ()
   "Uses `consult-fd` with custom args set to type 'file only' on
    current project-root or in the default-directory if root not found"
