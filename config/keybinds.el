@@ -59,6 +59,7 @@
 
 ;; Utils
 (keymap-global-set "M-s M-s" 'replace-string)
+(keymap-global-set "M-s M-q" 'query-replace)
 (keymap-global-set "C-M-y" 'duplicate-line)
 (keymap-global-set "M-o" 'other-window)
 (keymap-global-set "C-q" 'project-find-file)

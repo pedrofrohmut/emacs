@@ -11,4 +11,6 @@
 
 (setq treemacs-width 45)
 
+(keymap-set treemacs-mode-map "f" 'treemacs-RET-action)
+
 (keymap-global-set "C-|" 'treemacs)

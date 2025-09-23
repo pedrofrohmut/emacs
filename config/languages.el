@@ -42,6 +42,10 @@
 
 ;; Web ##########################################################################
 
+(add-hook 'html-mode-hook
+          (lambda ()
+            (keymap-set html-mode-map "M-o" 'other-window)))
+
 (use-package web-mode
   :ensure t)
 

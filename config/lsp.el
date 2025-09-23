@@ -61,7 +61,8 @@
 (use-package dap-mode
   :ensure t
   :config
-  (require 'dap-netcore)
+  (require 'dap-netcore) ;; Csharp / Dotnet
+  (require 'dap-dlv-go)  ;; Golang
   (dap-mode 1)
   ;; The modes below are optional
   (dap-ui-mode 1)

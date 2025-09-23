@@ -1,3 +1,7 @@
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 800 000))))
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
@@ -79,8 +83,9 @@
   :ensure t
   :config
   (global-undo-tree-mode)
-  (setq undo-tree-visualizer-timestamps t)
-  (setq undo-tree-auto-save-history t))
+  (setq undo-tree-visualizer-timestamps t
+        undo-tree-auto-save-history nil
+        undo-tree-visualizer-diff t))
 
 ;; Surround #####################################################################
 
