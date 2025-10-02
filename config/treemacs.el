@@ -1,8 +1,7 @@
 ;; Treemacs #####################################################################
 
 (use-package treemacs
-  :ensure t
-  :defer t
+  :ensure nil
   :config
   (treemacs-filewatch-mode t) ; Auto reload
   (treemacs-fringe-indicator-mode 'always)

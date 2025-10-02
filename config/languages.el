@@ -8,7 +8,8 @@
 ;; Golang #######################################################################
 
 (use-package go-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (add-hook 'go-mode-hook
           (lambda ()
@@ -28,17 +29,20 @@
 ;; Markdown #####################################################################
 
 (use-package markdown-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; JSON #########################################################################
 
 (use-package json-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; Yaml #########################################################################
 
 (use-package yaml-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; Web ##########################################################################
 
@@ -47,7 +51,8 @@
             (keymap-set html-mode-map "M-o" 'other-window)))
 
 (use-package web-mode
-  :ensure t)
+  :ensure nil
+  :defer t)
 
 ;;(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))

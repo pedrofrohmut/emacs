@@ -49,24 +49,30 @@
              `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode) . (,tsserv-cmd "--stdio")))
 
 ;; Looks like it wont work with symlinks
-(setq omnisharp-cmd
-      (expand-file-name "/home/pedro/.local/share/nvim/mason/packages/omnisharp/OmniSharp"))
+;; (setq omnisharp-cmd
+;;       (expand-file-name "/home/pedro/.local/share/nvim/mason/packages/omnisharp/OmniSharp"))
+
+;; (add-to-list 'eglot-server-programs
+;;              `(csharp-mode . (,omnisharp-cmd "-lsp")))
 
 (add-to-list 'eglot-server-programs
-             `(csharp-mode . (,omnisharp-cmd "-lsp")))
-
+             `(csharp-mode . (,(expand-file-name "~/opt/omnisharp/OmniSharp")
+                              "DotNet:enablePackageRestore=false"
+                              "-z"
+                              "-lsp"
+                              "-e" "utf-8")))
 
 ;; Debug ########################################################################
 
-(use-package dap-mode
-  :ensure t
-  :config
-  (require 'dap-netcore) ;; Csharp / Dotnet
-  (require 'dap-dlv-go)  ;; Golang
-  (dap-mode 1)
-  ;; The modes below are optional
-  (dap-ui-mode 1)
-  (dap-tooltip-mode 1)      ;; Enables mouse hover support
-  (tooltip-mode 1)          ;; Use tooltips for mouse hover
-  (dap-ui-controls-mode 1)  ;; Displays floating panel with debug buttons
-  )
+;; (use-package dap-mode
+;;   :ensure t
+;;   :config
+;;   (require 'dap-netcore) ;; Csharp / Dotnet
+;;   (require 'dap-dlv-go)  ;; Golang
+;;   (dap-mode 1)
+;;   ;; The modes below are optional
+;;   (dap-ui-mode 1)
+;;   (dap-tooltip-mode 1)      ;; Enables mouse hover support
+;;   (tooltip-mode 1)          ;; Use tooltips for mouse hover
+;;   (dap-ui-controls-mode 1)  ;; Displays floating panel with debug buttons
+;;   )
