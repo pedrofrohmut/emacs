@@ -93,6 +93,13 @@
   :ensure t
   :bind-keymap ("C-," . surround-keymap))
 
+;; Editorconfig #################################################################
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 ;; Loading  #####################################################################
 
 (load "~/.config/emacs/config/keybinds.el")
