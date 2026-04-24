@@ -28,39 +28,45 @@
 
 ;; Server #######################################################################
 
+;; Python
+(setq pyright-cmd
+      (expand-file-name "~/.local/share/nvim/mason/bin/pyright-langserver"))
+(add-to-list 'eglot-server-programs
+             `((python-mode python-ts-mode) ,pyright-cmd "--stdio"))
+
+;; Clang
 (setq clangd-cmd
       (expand-file-name "~/.local/share/nvim/mason/packages/clangd/clangd_20.1.0/bin/clangd"))
-
 (add-to-list 'eglot-server-programs
              `((c++-mode c-mode) ,clangd-cmd))
+
+;; Golang
 (setq gopls-cmd
       (expand-file-name "~/.local/share/nvim/mason/packages/gopls/gopls"))
-
 (add-to-list 'eglot-server-programs
              `(go-mode ,gopls-cmd))
 
+;; Typescript
 ;; TODO: Check if it will work with symlink (the full path is commented below)
 (setq tsserv-cmd
       (expand-file-name "~/.local/share/nvim/mason/bin/typescript-language-server"))
+(add-to-list 'eglot-server-programs
+             `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode) . (,tsserv-cmd "--stdio")))
 ;; (setq tsserv-cmd
 ;;       (expand-file-name "~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript-language-server/lib/cli.mjs"))
 
-(add-to-list 'eglot-server-programs
-             `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode) . (,tsserv-cmd "--stdio")))
-
 ;; Looks like it wont work with symlinks
-;; (setq omnisharp-cmd
-;;       (expand-file-name "/home/pedro/.local/share/nvim/mason/packages/omnisharp/OmniSharp"))
+(setq omnisharp-cmd
+      (expand-file-name "/home/pedro/.local/share/nvim/mason/packages/omnisharp/OmniSharp"))
+(add-to-list 'eglot-server-programs
+             `(csharp-mode . (,omnisharp-cmd "-lsp" "-z" "-e" "utf-8")))
 
 ;; (add-to-list 'eglot-server-programs
-;;              `(csharp-mode . (,omnisharp-cmd "-lsp")))
-
-(add-to-list 'eglot-server-programs
-             `(csharp-mode . (,(expand-file-name "~/opt/omnisharp/OmniSharp")
-                              "DotNet:enablePackageRestore=false"
-                              "-z"
-                              "-lsp"
-                              "-e" "utf-8")))
+;;              `(csharp-mode . (,(expand-file-name "~/opt/omnisharp/OmniSharp")
+;;                               "DotNet:enablePackageRestore=false"
+;;                               "-z"
+;;                               "-lsp"
+;;                               "-e" "utf-8")))
 
 ;; Debug ########################################################################
 
