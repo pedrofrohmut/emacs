@@ -44,3 +44,4 @@
 
 (keymap-global-set "C-; i" 'copilot-complete)
 (keymap-global-set "C-; o" 'copilot-clear-overlay)
+(keymap-global-set "C-; u" 'copilot-accept-completion)

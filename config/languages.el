@@ -74,6 +74,9 @@
 
 ;; JavaScript ###################################################################
 
+(use-package prettier-js
+  :ensure t)
+
 ;; TypeScript ###################################################################
 
 ;; Common function to set 2-space indentation

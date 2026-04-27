@@ -6,9 +6,9 @@
  ;; If there is more than one, they won't work right.
  '(global-whitespace-mode t)
  '(package-selected-packages
-   '(avy cape consult copilot corfu-prescient dap-mode dap-netcore diff-hl dired-sidebar doom-themes emmet emmet-mode go-mode json-mode
-         marginalia markdown-mode orderless surround symbols-outline typescript-mode undo-tree vertico-prescient visual-fill-column web-mode
-         yaml-mode)))
+   '(avy cape codeium consult copilot corfu-prescient dap-mode dap-netcore diff-hl dired-sidebar doom-themes emmet emmet-mode go-mode json-mode
+         marginalia markdown-mode orderless prettier-js surround symbols-outline typescript-mode undo-tree vertico-prescient
+         visual-fill-column web-mode yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
