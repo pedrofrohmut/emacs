@@ -8,6 +8,12 @@
 (add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
 (package-initialize)
 
+;; Straight #####################################################################
+
+;; TODO: Remake config with straight if it is good enough
+
+;; ##############################################################################
+
 (setq inhibit-startup-message t)
 
 ;; Cursor

@@ -32,16 +32,59 @@
 
 ;; Copilot ######################################################################
 
-(use-package copilot
-  :ensure t
-  :bind (:map copilot-completion-map
-              ("C-j" . copilot-accept-completion)
-              ("C-l" . copilot-accept-completion-by-line)
-              ("C-w" . copilot-accept-completion-by-word)
-              ("C-k" . copilot-clear-overlay)
-              ("C-n" . copilot-next-completion)
-              ("C-p" . copilot-previous-completion)))
+;; (use-package copilot
+;;   :ensure nil
+;;   :bind (:map copilot-completion-map
+;;               ("C-j" . copilot-accept-completion)
+;;               ("C-l" . copilot-accept-completion-by-line)
+;;               ("C-w" . copilot-accept-completion-by-word)
+;;               ("C-k" . copilot-clear-overlay)
+;;               ("C-n" . copilot-next-completion)
+;;               ("C-p" . copilot-previous-completion)))
 
-(keymap-global-set "C-; i" 'copilot-complete)
-(keymap-global-set "C-; o" 'copilot-clear-overlay)
-(keymap-global-set "C-; u" 'copilot-accept-completion)
+;; (keymap-global-set "C-; i" 'copilot-complete)
+;; (keymap-global-set "C-; o" 'copilot-clear-overlay)
+;; (keymap-global-set "C-; u" 'copilot-accept-completion)
+
+;; Codeium ######################################################################
+
+;; TODO: Check if the current ai code completion is good or is needed to add codeium
+
+;; Minuet #######################################################################
+
+(use-package minuet
+  :ensure t
+  :bind
+  (("C-; i" . #'minuet-complete-with-minibuffer))
+  :config
+    (setq minuet-provider 'openai-fim-compatible)
+    (setq minuet-n-completions 1) ; recommended for Local LLM for resource saving
+    ;; I recommend beginning with a small context window size and incrementally
+    ;; expanding it, depending on your local computing power. A context window
+    ;; of 512, serves as an good starting point to estimate your computing
+    ;; power. Once you have a reliable estimate of your local computing power,
+    ;; you should adjust the context window to a larger value.
+    (setq minuet-context-window 512)
+    (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:11434/v1/completions")
+    ;; an arbitrary non-null environment variable as placeholder.
+    ;; For Windows users, TERM may not be present in environment variables.
+    ;; Consider using APPDATA instead.
+    (plist-put minuet-openai-fim-compatible-options :name "Ollama")
+    (plist-put minuet-openai-fim-compatible-options :api-key "TERM")
+    (plist-put minuet-openai-fim-compatible-options :model "qwen2.5-coder:7b")
+
+    (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 56))
+
+  ;; :bind
+  ;; (("M-y" . #'minuet-complete-with-minibuffer) ;; use minibuffer for completion
+  ;;  ("M-i" . #'minuet-show-suggestion) ;; use overlay for completion
+  ;;  ("C-c m" . #'minuet-configure-provider)
+  ;;  :map minuet-active-mode-map
+  ;;  ;; These keymaps activate only when a minuet suggestion is displayed in the current buffer
+  ;;  ("M-p" . #'minuet-previous-suggestion) ;; invoke completion or cycle to next completion
+  ;;  ("M-n" . #'minuet-next-suggestion) ;; invoke completion or cycle to previous completion
+  ;;  ("M-A" . #'minuet-accept-suggestion) ;; accept whole completion
+  ;;  ;; Accept the first line of completion, or N lines with a numeric-prefix:
+  ;;  ;; e.g. C-u 2 M-a will accepts 2 lines of completion.
+  ;;  ("M-a" . #'minuet-accept-suggestion-line)
+  ;;  ("M-e" . #'minuet-dismiss-suggestion))
