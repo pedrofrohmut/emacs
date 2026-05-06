@@ -19,7 +19,6 @@
   :ensure t
   :config
   (setq dired-sidebar-width 48))
-  ;; :commands (dired-sidebar-toggle-sidebar))
 
 (keymap-set dired-sidebar-mode-map "f" 'dired-sidebar-subtree-toggle)
 (keymap-set dired-sidebar-mode-map "b" 'dired-sidebar-up-directory)

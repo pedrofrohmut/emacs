@@ -120,6 +120,8 @@
 
 (load "~/.config/emacs/config/languages.el")
 
+(load "~/.config/emacs/config/snippets.el")
+
 (load "~/.config/emacs/config/mini-buffer.el")
 
 (load "~/.config/emacs/config/prescient.el")
@@ -134,7 +136,7 @@
 
 (load "~/.config/emacs/config/dired.el")
 
-(load "~/.config/emacs/config/treemacs.el")
+;; (load "~/.config/emacs/config/treemacs.el")
 
 ;; Set customize file
 (setq custom-file "~/.config/emacs/emacs-custom.el")

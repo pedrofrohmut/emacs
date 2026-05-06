@@ -47,38 +47,13 @@
              `(go-mode ,gopls-cmd))
 
 ;; Typescript
-;; TODO: Check if it will work with symlink (the full path is commented below)
 (setq tsserv-cmd
       (expand-file-name "~/.local/share/nvim/mason/bin/typescript-language-server"))
 (add-to-list 'eglot-server-programs
              `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode) . (,tsserv-cmd "--stdio")))
-;; (setq tsserv-cmd
-;;       (expand-file-name "~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript-language-server/lib/cli.mjs"))
 
 ;; Looks like it wont work with symlinks
 (setq omnisharp-cmd
       (expand-file-name "/home/pedro/.local/share/nvim/mason/packages/omnisharp/OmniSharp"))
 (add-to-list 'eglot-server-programs
              `(csharp-mode . (,omnisharp-cmd "-lsp" "-z" "-e" "utf-8")))
-
-;; (add-to-list 'eglot-server-programs
-;;              `(csharp-mode . (,(expand-file-name "~/opt/omnisharp/OmniSharp")
-;;                               "DotNet:enablePackageRestore=false"
-;;                               "-z"
-;;                               "-lsp"
-;;                               "-e" "utf-8")))
-
-;; Debug ########################################################################
-
-;; (use-package dap-mode
-;;   :ensure t
-;;   :config
-;;   (require 'dap-netcore) ;; Csharp / Dotnet
-;;   (require 'dap-dlv-go)  ;; Golang
-;;   (dap-mode 1)
-;;   ;; The modes below are optional
-;;   (dap-ui-mode 1)
-;;   (dap-tooltip-mode 1)      ;; Enables mouse hover support
-;;   (tooltip-mode 1)          ;; Use tooltips for mouse hover
-;;   (dap-ui-controls-mode 1)  ;; Displays floating panel with debug buttons
-;;   )
