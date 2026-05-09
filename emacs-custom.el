@@ -5,10 +5,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(global-whitespace-mode t)
- '(package-selected-packages
-   '(avy cape consult corfu-prescient diff-hl dired-sidebar doom-themes emmet emmet-mode go-mode
-         js-react-redux-yasnippets json-mode marginalia markdown-mode minuet orderless prettier-js surround symbols-outline typescript-mode
-         undo-tree vertico-prescient visual-fill-column web-mode yaml-mode yasnippet yasnippet-snippets)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
