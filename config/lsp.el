@@ -50,7 +50,11 @@
 (setq tsserv-cmd
       (expand-file-name "~/.local/share/nvim/mason/bin/typescript-language-server"))
 (add-to-list 'eglot-server-programs
-             `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode) . (,tsserv-cmd "--stdio")))
+             `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode typescript-ts-mode tsx-ts-mode web-mode) . (,tsserv-cmd "--stdio")))
+
+;; Typescript (I am trying from npm --global)
+;; (add-to-list 'eglot-server-programs
+;;              '((typescript-ts-mode) "typescript-language-server" "--stdio"))
 
 ;; Looks like it wont work with symlinks
 (setq omnisharp-cmd

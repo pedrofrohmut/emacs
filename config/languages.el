@@ -50,19 +50,6 @@
           (lambda ()
             (keymap-set html-mode-map "M-o" 'other-window)))
 
-(use-package web-mode
-  :ensure nil
-  :defer t)
-
-;;(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-;;(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
-;;(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-;;(add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
-
-(setq web-mode-markup-indent-offset 2
-      web-mode-css-indent-offset 4
-      web-mode-code-indent-offset 2)
-
 (use-package emmet-mode
   :ensure t)
 
@@ -71,30 +58,48 @@
 (keymap-global-set "C-; j" 'emmet-expand-line)
 
 (add-hook 'sgml-mode-hook 'emmet-mode)
+(add-to-list 'emmet-jsx-major-modes 'web-mode)
 
-;; JavaScript ###################################################################
+;; JavaScript/Typescript/React ##################################################
+
+(setq treesit-language-source-alist
+      '((tsx . ("https://github.com/tree-sitter/tree-sitter-typescript"
+                "v0.23.2"
+                "tsx/src"))
+        (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript"
+                       "v0.23.2"
+                       "typescript/src"))))
+
+;; Map file extensions to tree-sitter modes
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+
+;; Or use major-mode-remap-alist for existing modes (Emacs 29+)
+(setq major-mode-remap-alist
+      '((typescript-mode . typescript-ts-mode)))
 
 (use-package prettier-js
   :ensure t)
 
-;; TypeScript ###################################################################
+;; (use-package web-mode
+;;   :ensure t)
+
+;;(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.ts\\'" . web-mode))
+
+;; (setq web-mode-markup-indent-offset 2
+;;       web-mode-css-indent-offset 4
+;;       web-mode-code-indent-offset 2)
 
 ;; Common function to set 2-space indentation
 (defun my-js-ts-2-space-indent ()
   "Use 2 spaces for JS/TS/JSX/TSX indentation."
   (setq-local tab-width 2)
-  (setq-local indent-tabs-mode nil)          ; use spaces, not tabs
-  ;; For built-in js-mode / javascript-mode
-  (when (boundp 'js-indent-level) (setq-local js-indent-level 2))
-  ;; For typescript-mode
-  (when (boundp 'typescript-indent-level) (setq-local typescript-indent-level 2))
-  ;; For web-mode (often used for JSX/TSX)
-  (when (boundp 'web-mode-markup-indent-offset) (setq-local web-mode-markup-indent-offset 2))
-  (when (boundp 'web-mode-css-indent-offset)    (setq-local web-mode-css-indent-offset 2))
-  (when (boundp 'web-mode-code-indent-offset)   (setq-local web-mode-code-indent-offset 2))
-  ;; For tide/formatters that respect js/ts settings
-  (when (boundp 'js2-basic-offset) (setq-local js2-basic-offset 2))
-  )
+  (setq-local indent-tabs-mode nil))
 
 ;; Hook for JS, JSX, TS, TSX
 (add-hook 'js-mode-hook #'my-js-ts-2-space-indent)

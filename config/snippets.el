@@ -8,4 +8,6 @@
   :ensure t)
 
 (use-package js-react-redux-yasnippets
-  :ensure t)
+  :ensure t
+  :config
+  (setq js-react-redux-yasnippets-want-semicolon nil))
