@@ -58,7 +58,10 @@
 (keymap-global-set "C-; j" 'emmet-expand-line)
 
 (add-hook 'sgml-mode-hook 'emmet-mode)
+
 (add-to-list 'emmet-jsx-major-modes 'web-mode)
+(add-to-list 'emmet-jsx-major-modes 'typescript-ts-mode)
+(add-to-list 'emmet-jsx-major-modes 'tsx-ts-mode)
 
 ;; JavaScript/Typescript/React ##################################################
 

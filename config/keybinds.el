@@ -46,10 +46,10 @@
   (newline-and-indent))
 
 ;; Scrolling
-(keymap-global-set "M-[" #'my/scroll-half-page-up)
-(keymap-global-set "M-]" #'my/scroll-half-page-down)
-(keymap-global-set "M-{" #'my/scroll-quarter-page-up)
-(keymap-global-set "M-}" #'my/scroll-quarter-page-down)
+(keymap-global-set "M-{" #'my/scroll-half-page-up)
+(keymap-global-set "M-}" #'my/scroll-half-page-down)
+(keymap-global-set "M-[" #'my/scroll-quarter-page-up)
+(keymap-global-set "M-]" #'my/scroll-quarter-page-down)
 
 ;; Buffers
 (keymap-global-set "M-g b" #'my/switch-to-recent-buffer)
