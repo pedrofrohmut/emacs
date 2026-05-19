@@ -33,7 +33,7 @@
 ;; Copilot ######################################################################
 
 ;; (use-package copilot
-;;   :ensure nil
+  ;; :ensure nil
 ;;   :bind (:map copilot-completion-map
 ;;               ("C-j" . copilot-accept-completion)
 ;;               ("C-l" . copilot-accept-completion-by-line)
@@ -46,17 +46,13 @@
 ;; (keymap-global-set "C-; o" 'copilot-clear-overlay)
 ;; (keymap-global-set "C-; u" 'copilot-accept-completion)
 
-;; Codeium ######################################################################
-
-;; TODO: Check if the current ai code completion is good or is needed to add codeium
-
 ;; Minuet #######################################################################
 
 (use-package minuet
   :ensure t
   :bind
-  (("C-; i" . #'minuet-complete-with-minibuffer)
-   ("C-; u" . #'minuet-accept-suggestion-line))
+  (("C-; C-i" . #'minuet-complete-with-minibuffer)
+   ("C-; C-u" . #'minuet-accept-suggestion-line))
   :config
     (setq minuet-provider 'openai-fim-compatible)
     (setq minuet-n-completions 1) ; recommended for Local LLM for resource saving

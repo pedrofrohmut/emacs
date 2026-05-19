@@ -65,6 +65,8 @@
 
 ;; JavaScript/Typescript/React ##################################################
 
+(setq js-indent-level 2)
+
 (setq treesit-language-source-alist
       '((tsx . ("https://github.com/tree-sitter/tree-sitter-typescript"
                 "v0.23.2"
@@ -77,36 +79,5 @@
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 
-;; Or use major-mode-remap-alist for existing modes (Emacs 29+)
-(setq major-mode-remap-alist
-      '((typescript-mode . typescript-ts-mode)))
-
 (use-package prettier-js
   :ensure t)
-
-;; (use-package web-mode
-;;   :ensure t)
-
-;;(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-;;(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
-;;(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-;;(add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.ts\\'" . web-mode))
-
-;; (setq web-mode-markup-indent-offset 2
-;;       web-mode-css-indent-offset 4
-;;       web-mode-code-indent-offset 2)
-
-;; Common function to set 2-space indentation
-(defun my-js-ts-2-space-indent ()
-  "Use 2 spaces for JS/TS/JSX/TSX indentation."
-  (setq-local tab-width 2)
-  (setq-local indent-tabs-mode nil))
-
-;; Hook for JS, JSX, TS, TSX
-(add-hook 'js-mode-hook #'my-js-ts-2-space-indent)
-(add-hook 'js2-mode-hook #'my-js-ts-2-space-indent)
-(add-hook 'js-jsx-mode-hook #'my-js-ts-2-space-indent)
-(add-hook 'typescript-mode-hook #'my-js-ts-2-space-indent)
-(add-hook 'rjsx-mode-hook #'my-js-ts-2-space-indent)

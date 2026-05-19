@@ -61,12 +61,16 @@
 (keymap-global-set "M-s M-s" 'replace-string)
 (keymap-global-set "M-s M-q" 'query-replace)
 (keymap-global-set "C-M-y" 'duplicate-line)
-(keymap-global-set "M-o" 'other-window)
 (keymap-global-set "C-q" 'project-find-file)
 (keymap-global-set "C-`" 'quoted-insert)
 (keymap-global-set "C-x f" 'find-file-at-point)
 (keymap-global-set "C-." 'repeat)
 (keymap-global-set "C-c C-c" 'project-recompile)
+
+(keymap-global-set "M-o" 'other-window)
+(keymap-global-set "M-O" (lambda()
+                           (interactive)
+                           (other-window -1)))
 
 (keymap-global-set "C-M-o" #'my/open-line-up)
 (keymap-global-set "C-o" #'my/open-line-down)
