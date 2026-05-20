@@ -108,6 +108,8 @@
 
 ;; Loading  #####################################################################
 
+(load "~/.config/emacs/config/my-custom.el")
+
 (load "~/.config/emacs/config/keybinds.el")
 
 (load "~/.config/emacs/config/colors.el")
