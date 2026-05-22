@@ -7,3 +7,9 @@
   (interactive)
   (let ((user-input (read-string "Enter a hex number (base 16): ")))
     (message "Hex to Decimal: %s => %d" user-input (string-to-number user-input 16))))
+
+(defun my/insert-char-decimal ()
+  (interactive)
+  (let* ((user-input (read-string "Enter a decimal number for the unicode character: "))
+         (hex-value (string-to-number (format "%x" (string-to-number user-input 10)) 16)))
+    (insert-char hex-value)))
