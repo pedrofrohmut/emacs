@@ -1,7 +1,20 @@
-(setq eglot-ignored-server-capabilities
-      '(:documentHighlightProvider))
+;; (setq eglot-ignored-server-capabilities
+;;       '(:documentHighlightProvider
+;;         :inlayHintProvider))
+        ;; :documentRangeFormattingProvider
+        ;; :documentFormattingProvider
+        ;; :documentOnTypeFormattingProvider))
 
-(require 'eglot)
+;; (require 'eglot)
+
+(use-package eglot
+  :custom
+  (eglot-ignored-server-capabilities
+   '(:documentHighlightProvider
+     :documentFormattingProvider
+     :documentRangeFormattingProvider
+     :documentOnTypeFormattingProvider
+     :inlayHintProvider)))
 
 ;; To keep eldoc from displaying documentation at point
 ;(add-to-list 'eglot-ignored-server-capabilities :hoverProvider)
@@ -11,8 +24,9 @@
 ;;         ;; :documentFormattingProvider
 ;;         ;; :documentRangeFormattingProvider
 ;;         :documentHighlightProvider
-;;         :inlayHintProvider))
+        ;; :inlayHintProvider))
 
+;; Prevents Eglot to highlight the symbol under cursor
 (set-face-attribute 'eglot-highlight-symbol-face nil
                     ;;:background "#552"
                     :background "#1a1b2c"
@@ -37,7 +51,8 @@
 
 ;; Clang
 (setq clangd-cmd
-      (expand-file-name "~/.local/share/nvim/mason/packages/clangd/clangd_20.1.0/bin/clangd"))
+      (expand-file-name "~/.local/share/nvim/mason/bin/clangd"))
+      ;; (expand-file-name "~/.local/share/nvim/mason/packages/clangd/clangd_20.1.0/bin/clangd"))
 (add-to-list 'eglot-server-programs
              `((c++-mode c-mode) ,clangd-cmd))
 

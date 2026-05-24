@@ -106,6 +106,23 @@
   :config
   (editorconfig-mode 1))
 
+;; Move Text ####################################################################
+
+(use-package move-text
+  :ensure t
+  :bind
+  (("M--" . move-text-region-up)
+   ("M-=" . move-text-region-down)))
+
+;; Multicursors #################################################################
+
+(use-package multiple-cursors
+  :ensure t
+  :bind
+  (("C-<" .   'mc/skip-to-next-like-this)
+   ("C->" .   'mc/mark-next-like-this)
+   ("C-c e" . 'mc/edit-lines)))
+
 ;; Loading  #####################################################################
 
 (load "~/.config/emacs/config/my-custom.el")
@@ -143,3 +160,4 @@
 ;; Set customize file
 (setq custom-file "~/.config/emacs/emacs-custom.el")
 (load custom-file :noerror)
+(put 'upcase-region 'disabled nil)

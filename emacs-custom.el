@@ -7,8 +7,8 @@
  '(global-whitespace-mode t)
  '(package-selected-packages
    '(avy cape consult corfu-prescient diff-hl dired-sidebar doom-themes eglot-typescript-preset emmet-mode go-mode js-react-redux-yasnippets
-         json-mode jtsx marginalia markdown-mode minuet orderless prettier-js surround symbols-outline undo-tree vertico-prescient
-         visual-fill-column web-mode yaml-mode yasnippet-snippets)))
+         json-mode jtsx marginalia markdown-mode minuet move-text multiple-cursors orderless prettier-js surround symbols-outline undo-tree
+         vertico-prescient visual-fill-column web-mode yaml-mode yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

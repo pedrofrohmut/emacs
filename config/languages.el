@@ -21,6 +21,10 @@
 
 (setq c-basic-offset 4)
 (setq c-hanging-braces-alist '(substatement-open . (after)))
+(setq c-offsets-alist '((substatement-open . 0)
+                        (block-open        . 0)
+                        (brace-list-open   . 0)
+                        (brace-list-close  . 0)))
 
 ;; CSharp #######################################################################
 
