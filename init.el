@@ -121,7 +121,10 @@
   :bind
   (("C-<" .   'mc/skip-to-next-like-this)
    ("C->" .   'mc/mark-next-like-this)
-   ("C-c e" . 'mc/edit-lines)))
+   ("C-c e" . 'mc/edit-lines)
+   :map mc/keymap
+   ("RET" . nil)
+   ("<return>" . nil)))
 
 ;; Loading  #####################################################################
 
