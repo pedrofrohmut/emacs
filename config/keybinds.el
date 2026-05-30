@@ -53,6 +53,8 @@
 
 ;; Buffers
 (keymap-global-set "M-g b" #'my/switch-to-recent-buffer)
+(keymap-global-set "M-g M-b" #'my/switch-to-recent-buffer)
+(keymap-global-set "C-x C-b" 'switch-to-buffer-other-window)
 
 ;; Windows
 (keymap-global-set "C-x w r" 'window-swap-states)
@@ -61,11 +63,12 @@
 (keymap-global-set "M-s M-s" 'replace-string)
 (keymap-global-set "M-s M-q" 'query-replace)
 (keymap-global-set "C-M-y" 'duplicate-line)
-(keymap-global-set "C-q" 'project-find-file)
+;; (keymap-global-set "C-q" 'project-find-file)
 (keymap-global-set "C-`" 'quoted-insert)
 (keymap-global-set "C-x f" 'find-file-at-point)
 (keymap-global-set "C-." 'repeat)
-(keymap-global-set "C-c C-c" 'project-recompile)
+;;(keymap-global-set "C-c C-c" 'project-recompile)
+(keymap-global-set "C-x p r" 'project-recompile)
 
 (keymap-global-set "M-o" 'other-window)
 (keymap-global-set "M-O" (lambda()

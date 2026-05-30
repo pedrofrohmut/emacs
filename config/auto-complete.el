@@ -3,8 +3,8 @@
 ;; Use Dabbrev with Corfu!
 (use-package dabbrev
   ;; Swap M-/ and C-M-/
-  :bind (("M-/" . dabbrev-completion)
-         ("C-M-/" . dabbrev-expand))
+  ;; :bind (("M-/" . dabbrev-completion)
+  ;;        ("C-M-/" . dabbrev-expand))
   :init
   ;; Make dabbrec case sensitive
   (setq dabbrev-case-fold-search nil)

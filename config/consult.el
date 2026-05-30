@@ -19,7 +19,7 @@
                             "--full-path --color=never --type file")))
     (call-interactively #'consult-fd)))
 
-;;(keymap-global-set "C-q" #'my/consult-fd-only-files)
+(keymap-global-set "C-q" #'my/consult-fd-only-files)
 
 ;; Paste from register (from mini buffer)
 (keymap-global-set "M-s y" 'consult-yank-from-kill-ring)

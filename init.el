@@ -124,7 +124,22 @@
    ("C-c e" . 'mc/edit-lines)
    :map mc/keymap
    ("RET" . nil)
-   ("<return>" . nil)))
+   ("<return>" . nil))
+  :config
+  (add-to-list 'mc/cmds-to-run-for-all 'self-insert-command))
+
+;; Fill Column ##################################################################
+
+(setq-default fill-column 141)
+(global-display-fill-column-indicator-mode t)
+(setq-default display-fill-column-indicator-column 81)
+
+(use-package visual-fill-column
+  :ensure t)
+
+(setq-default visual-fill-column-center-text t)
+
+(add-hook 'after-init-hook 'global-visual-fill-column-mode)
 
 ;; Loading  #####################################################################
 
@@ -150,7 +165,7 @@
 
 (load "~/.config/emacs/config/github.el")
 
-(load "~/.config/emacs/config/visual-fill-column.el")
+;; (load "~/.config/emacs/config/visual-fill-column.el")
 
 (load "~/.config/emacs/config/consult.el")
 
@@ -163,4 +178,3 @@
 ;; Set customize file
 (setq custom-file "~/.config/emacs/emacs-custom.el")
 (load custom-file :noerror)
-(put 'upcase-region 'disabled nil)

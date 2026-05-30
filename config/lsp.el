@@ -1,37 +1,15 @@
-;; (setq eglot-ignored-server-capabilities
-;;       '(:documentHighlightProvider
-;;         :inlayHintProvider))
-        ;; :documentRangeFormattingProvider
-        ;; :documentFormattingProvider
-        ;; :documentOnTypeFormattingProvider))
-
-;; (require 'eglot)
-
 (use-package eglot
   :custom
   (eglot-ignored-server-capabilities
    '(:documentHighlightProvider
+     :codeLensProvider
      :documentFormattingProvider
      :documentRangeFormattingProvider
      :documentOnTypeFormattingProvider
+     :documentLinkProvider
+     :colorProvider
+     :foldingRangeProvider
      :inlayHintProvider)))
-
-;; To keep eldoc from displaying documentation at point
-;(add-to-list 'eglot-ignored-server-capabilities :hoverProvider)
-
-;; (setq eglot-ignored-server-capabilities
-;;       '(
-;;         ;; :documentFormattingProvider
-;;         ;; :documentRangeFormattingProvider
-;;         :documentHighlightProvider
-        ;; :inlayHintProvider))
-
-;; Prevents Eglot to highlight the symbol under cursor
-(set-face-attribute 'eglot-highlight-symbol-face nil
-                    ;;:background "#552"
-                    :background "#1a1b2c"
-                    :foreground "#fff"
-                    :inherit nil)
 
 (with-eval-after-load 'eglot
   (define-key eglot-mode-map (kbd "C-c l a") 'eglot-code-actions)
@@ -40,6 +18,11 @@
   (define-key eglot-mode-map (kbd "C-c l d") 'flymake-show-project-diagnostics)
   (define-key eglot-mode-map (kbd "M-p") 'flymake-goto-prev-error)
   (define-key eglot-mode-map (kbd "M-n") 'flymake-goto-next-error))
+
+;; Disable flymake stuff on the text and UI
+(set-face-attribute 'flymake-error nil :underline nil)
+(set-face-attribute 'flymake-warning nil :underline nil)
+(set-face-attribute 'flymake-note nil :underline nil)
 
 ;; Server #######################################################################
 
@@ -67,10 +50,6 @@
       (expand-file-name "~/.local/share/nvim/mason/bin/typescript-language-server"))
 (add-to-list 'eglot-server-programs
              `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode typescript-ts-mode tsx-ts-mode web-mode) . (,tsserv-cmd "--stdio")))
-
-;; Typescript (I am trying from npm --global)
-;; (add-to-list 'eglot-server-programs
-;;              '((typescript-ts-mode) "typescript-language-server" "--stdio"))
 
 ;; Looks like it wont work with symlinks
 (setq omnisharp-cmd
