@@ -22,7 +22,7 @@
 ;; Line numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)
-(global-hl-line-mode)
+;; (global-hl-line-mode)
 
 ;; Identation
 (setq-default indent-tabs-mode nil
@@ -75,7 +75,8 @@
 ;; Whitespaces ##################################################################
 
 (setq-default whitespace-style
-              '(face spaces tabs tab-mark trailing))
+              ;; '(face spaces tabs tab-mark trailing))
+              '(face tabs tab-mark trailing))
 
 (custom-set-faces
  `(whitespace-tab      ((t (:background ,"red"))))
@@ -147,7 +148,8 @@
 
 (load "~/.config/emacs/config/keybinds.el")
 
-(load "~/.config/emacs/config/colors.el")
+;; (load "~/.config/emacs/config/colors.el")
+(load "~/.config/emacs/config/alt-colors.el")
 
 (load "~/.config/emacs/config/lsp.el")
 
