@@ -63,7 +63,7 @@
 (keymap-global-set "M-s M-s" 'replace-string)
 (keymap-global-set "M-s M-q" 'query-replace)
 (keymap-global-set "C-M-y" 'duplicate-line)
-;; (keymap-global-set "C-q" 'project-find-file)
+(keymap-global-set "C-q" 'project-find-file)
 (keymap-global-set "C-`" 'quoted-insert)
 (keymap-global-set "C-x f" 'find-file-at-point)
 (keymap-global-set "C-." 'repeat)
