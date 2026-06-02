@@ -6,8 +6,9 @@
   (("M-g [" . diff-hl-previous-hunk)
    ("M-g ]" . diff-hl-next-hunk)
    ("M-g S" . diff-hl-stage-dwim)
-   ("M-g h" . diff-hl-show-hunk))
-  :config (global-diff-hl-mode))
+   ("M-g h" . diff-hl-show-hunk)))
+  ;; :config
+  ;; (global-diff-hl-mode))
 
 ;; C-x v *  diff-hl-show-hunk
 ;; C-x v S  diff-hl-stage-dwim

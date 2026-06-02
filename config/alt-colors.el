@@ -18,20 +18,33 @@
 ;; Keywords
 ;; (set-face-foreground 'font-lock-keyword-face "#999")
 ;; (set-face-foreground 'font-lock-keyword-face "#f66")
-;; (set-face-foreground 'font-lock-keyword-face "#f85e84") ;; Sonokai red
 ;; (set-face-foreground 'font-lock-keyword-face "#bb9af7") ;; TokyoNight purple
-(set-face-foreground 'font-lock-keyword-face "#e5c463") ;; Sonokai yellow
+;; (set-face-foreground 'font-lock-keyword-face "#e5c463") ;; Sonokai yellow
+(set-face-foreground 'font-lock-keyword-face "#f85e84") ;; Sonokai red
 
 ;; Blue comments
 ;; (set-face-foreground 'font-lock-comment-face "#58a")
+;; (set-face-foreground 'font-lock-comment-face "#848089") ;; Sonokai Grey
 (set-face-foreground 'font-lock-comment-face "#579")
 
 ;; Green Strings
-(set-face-foreground 'font-lock-string-face "#5c8")
+;; (set-face-foreground 'font-lock-string-face "#5c8")
 ;; (set-face-foreground 'font-lock-string-face "#9c8")
+;; (set-face-foreground 'font-lock-string-face "#93cd6f") ;; Sonokai green
+(set-face-foreground 'font-lock-string-face "#e5c463") ;; Sonokai yellow
+
+;; Line number
+(set-face-foreground 'line-number "#666")
+(set-face-foreground 'line-number-current-line "#e5c463")
 
 ;; Highlight matching pair
 (set-face-attribute 'show-paren-match nil :foreground "#f00" :background "#1a1b2c" :weight 'ultra-bold)
 
 ;; Fix bugged colors in compile mode
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
+;; Fixing Git fringe colors
+(require 'diff-hl)
+(set-face-background 'diff-hl-insert "#262")
+(set-face-background 'diff-hl-delete "#622")
+(set-face-background 'diff-hl-change "#266")
