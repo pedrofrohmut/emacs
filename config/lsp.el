@@ -24,6 +24,10 @@
 (set-face-attribute 'flymake-warning nil :underline nil)
 (set-face-attribute 'flymake-note nil :underline nil)
 
+;; Hide flymake indicators
+(setq flymake-fringe-indicator-position nil
+      flymake-margin-indicator-position nil)
+
 ;; Server #######################################################################
 
 ;; Python

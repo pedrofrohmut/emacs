@@ -1,6 +1,9 @@
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (setq gc-cons-threshold (* 800 000))))
+;; Setup Garbage collection back to normal after init
+;; (add-hook 'emacs-startup-hook
+;;           (lambda ()
+;;             (setq gc-cons-threshold (* 800 000))))
+
+;; Setup package ################################################################
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -8,21 +11,13 @@
 (add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
 (package-initialize)
 
-;; Straight #####################################################################
-
-;; TODO: Remake config with straight if it is good enough
-
-;; ##############################################################################
+;; Emacs options ################################################################
 
 (setq inhibit-startup-message t)
-
-;; Cursor
-(blink-cursor-mode 0)
 
 ;; Line numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)
-;; (global-hl-line-mode)
 
 ;; Identation
 (setq-default indent-tabs-mode nil
@@ -32,9 +27,6 @@
 
 ;; Delete the selected text when start typing
 (delete-selection-mode 1)
-
-;; Pairs
-;(electric-pair-mode nil)
 
 ;; Maching highlight
 (show-paren-mode t)
@@ -71,6 +63,9 @@
 
 ;; Fonts
 (set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 104)
+
+;; Cursor
+(blink-cursor-mode 0)
 
 ;; Whitespaces ##################################################################
 
@@ -167,15 +162,11 @@
 
 (load "~/.config/emacs/config/github.el")
 
-;; (load "~/.config/emacs/config/visual-fill-column.el")
-
 (load "~/.config/emacs/config/consult.el")
 
 (load "~/.config/emacs/config/avy.el")
 
 (load "~/.config/emacs/config/dired.el")
-
-;; (load "~/.config/emacs/config/treemacs.el")
 
 ;; Set customize file
 (setq custom-file "~/.config/emacs/emacs-custom.el")
