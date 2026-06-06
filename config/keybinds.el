@@ -70,6 +70,10 @@
 ;;(keymap-global-set "C-c C-c" 'project-recompile)
 (keymap-global-set "C-x p r" 'project-recompile)
 
+(keymap-global-set "M-u" 'upcase-dwim)     ;; Don't know why this is not default
+(keymap-global-set "M-c" 'capitalize-dwim) ;; Don't know why this is not default
+(keymap-global-set "M-l" 'downcase-dwim)   ;; Don't know why this is not default
+
 (keymap-global-set "M-o" 'other-window)
 (keymap-global-set "M-O" (lambda()
                            (interactive)
@@ -80,7 +84,8 @@
 (keymap-global-set "C-j" #'my/open-line-down2)
 
 ;; Easier delete
-(keymap-global-set "C-h" 'delete-backward-char)
+(keymap-global-set "C-h" 'backward-delete-char-untabify)
+(keymap-set isearch-mode-map "C-h" 'isearch-delete-char)
 (keymap-global-set "C-<left>" 'backward-kill-word)
 (keymap-global-set "C-l" 'delete-forward-char)
 (keymap-global-set "C-<up>" 'kill-sexp) ;; C-M-k

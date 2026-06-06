@@ -22,10 +22,10 @@
 ;; (set-face-foreground 'font-lock-keyword-face "#e5c463") ;; Sonokai yellow
 (set-face-foreground 'font-lock-keyword-face "#f85e84") ;; Sonokai red
 
-;; Blue comments
-;; (set-face-foreground 'font-lock-comment-face "#58a")
-;; (set-face-foreground 'font-lock-comment-face "#848089") ;; Sonokai Grey
+;; Blue comments and Doc Comments
 (set-face-foreground 'font-lock-comment-face "#579")
+(set-face-foreground 'font-lock-doc-face "#579")
+(set-face-foreground 'font-lock-doc-markup-face "#579")
 
 ;; Green Strings
 ;; (set-face-foreground 'font-lock-string-face "#5c8")
