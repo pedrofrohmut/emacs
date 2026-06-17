@@ -1,5 +1,7 @@
 (use-package yasnippet
   :ensure t
+  :defer t
+  :commands yas-expand
   :bind
   (("C-; k" . yas-expand)
    :map yas-minor-mode-map
@@ -12,9 +14,11 @@
   (add-hook 'prog-mode-hook #'yas-minor-mode))
 
 (use-package yasnippet-snippets
-  :ensure t)
+  :ensure t
+  :after yasnippet)
 
 (use-package js-react-redux-yasnippets
   :ensure t
+  :after yasnippet
   :config
   (setq js-react-redux-yasnippets-want-semicolon nil))

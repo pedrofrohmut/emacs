@@ -54,7 +54,8 @@
 ;; Buffers
 (keymap-global-set "M-g b" #'my/switch-to-recent-buffer)
 (keymap-global-set "M-g M-b" #'my/switch-to-recent-buffer)
-(keymap-global-set "C-x C-b" 'switch-to-buffer-other-window)
+;; (keymap-global-set "C-x C-b" 'switch-to-buffer-other-window)
+(keymap-global-set "C-x C-b" 'ibuffer)
 
 ;; Windows
 (keymap-global-set "C-x w r" 'window-swap-states)

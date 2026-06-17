@@ -1,14 +1,14 @@
 ;; Setup Garbage collection back to normal after init
-;; (add-hook 'emacs-startup-hook
-;;           (lambda ()
-;;             (setq gc-cons-threshold (* 800 000))))
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 800 000))))
 
 ;; Setup package ################################################################
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("elpa"  . "https://elpa.gnu.org/packages/"))
 (package-initialize)
 
 ;; Emacs options ################################################################
@@ -62,8 +62,8 @@
 ;; Appearance ###################################################################
 
 ;; Fonts
-(set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 104)
-;; (set-face-attribute 'default nil :font "Inconsolata Nerd Font" :height 120)
+;; (set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 104)
+(set-face-attribute 'default nil :font "Inconsolata Nerd Font" :height 120)
 
 ;; Cursor
 (blink-cursor-mode 0)

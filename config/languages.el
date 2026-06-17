@@ -1,21 +1,14 @@
-;; Languages ####################################################################
-
-(defun my-ident ()
-            (setq indent-tabs-mode nil
-                  tab-width 4
-                  c-basic-offset 4))
-
 ;; Golang #######################################################################
 
 (use-package go-mode
   :ensure t
   :defer t)
 
-(add-hook 'go-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode t
-                  tab-width 4
-                  whitespace-style '(face spaces trailing))))
+;; (add-hook 'go-mode-hook
+;;           (lambda ()
+;;             (setq indent-tabs-mode t
+;;                   tab-width 4
+;;                   whitespace-style '(face spaces trailing))))
 
 ;; C/C++ ########################################################################
 
@@ -54,18 +47,19 @@
           (lambda ()
             (keymap-set html-mode-map "M-o" 'other-window)))
 
+;; Emmet ########################################################################
+
 (use-package emmet-mode
-  :ensure t)
-
-(keymap-unset emmet-mode-keymap "C-j")
-
-(keymap-global-set "C-; j" 'emmet-expand-line)
-
-(add-hook 'sgml-mode-hook 'emmet-mode)
-
-(add-to-list 'emmet-jsx-major-modes 'web-mode)
-(add-to-list 'emmet-jsx-major-modes 'typescript-ts-mode)
-(add-to-list 'emmet-jsx-major-modes 'tsx-ts-mode)
+  :ensure t
+  :defer t
+  :bind
+  (("C-; j" . emmet-expand-line)) ;; Maybe unbind C-j is needed
+  :hook
+  (sgml-mode . emmet-mode)
+  :config
+  (add-to-list 'emmet-jsx-major-modes 'web-mode)
+  (add-to-list 'emmet-jsx-major-modes 'typescript-ts-mode)
+  (add-to-list 'emmet-jsx-major-modes 'tsx-ts-mode))
 
 ;; JavaScript/Typescript/React ##################################################
 

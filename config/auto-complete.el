@@ -24,6 +24,7 @@
 
 (use-package cape
   :ensure t
+  :defer t
   :bind ("C-;" . cape-prefix-map)
   :init
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
@@ -50,6 +51,7 @@
 
 (use-package minuet
   :ensure t
+  :defer t
   :bind
   (("C-; C-i" . #'minuet-complete-with-minibuffer)
    ("C-; C-u" . #'minuet-accept-suggestion-line))

@@ -2,6 +2,7 @@
 
 (use-package diff-hl
   :ensure t
+  :defer t
   :bind
   (("M-g [" . diff-hl-previous-hunk)
    ("M-g ]" . diff-hl-next-hunk)
