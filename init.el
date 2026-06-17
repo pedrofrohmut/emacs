@@ -63,6 +63,7 @@
 
 ;; Fonts
 (set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 104)
+;; (set-face-attribute 'default nil :font "Inconsolata Nerd Font" :height 120)
 
 ;; Cursor
 (blink-cursor-mode 0)
@@ -137,6 +138,12 @@
 
 (add-hook 'after-init-hook 'global-visual-fill-column-mode)
 
+;; Highlight Numbers ############################################################
+
+;; Emacs does not have this group by default
+(use-package highlight-numbers
+  :ensure t)
+
 ;; Loading  #####################################################################
 
 (load "~/.config/emacs/config/my-custom.el")
@@ -147,6 +154,8 @@
 (load "~/.config/emacs/config/alt-colors.el")
 
 (load "~/.config/emacs/config/lsp.el")
+
+(load "~/.config/emacs/config/debug.el")
 
 (load "~/.config/emacs/config/symbols-outline.el")
 
