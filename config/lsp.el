@@ -1,70 +1,84 @@
+;; Eglot ########################################################################
+
 (use-package eglot
-  :defer t
-  :commands eglot
+  :ensure t
+  :init
+  (setq eglot-code-action-indicator '()) ;; Hides the lamp for code actions
+  :config
+  (add-to-list 'eglot-stay-out-of 'flymake) ;; Don't start flymake with eglot
+  (add-hook 'eglot-managed-mode-hook #'flycheck-mode)
+  (add-hook 'eglot-managed-mode-hook #'flycheck-eglot-mode)
   :custom
   (eglot-ignored-server-capabilities
-   '(:documentHighlightProvider
-     :codeLensProvider
-     :documentFormattingProvider
-     :documentRangeFormattingProvider
-     :documentOnTypeFormattingProvider
-     :documentLinkProvider
-     :colorProvider
-     :foldingRangeProvider
-     :inlayHintProvider)))
+    '(:documentHighlightProvider
+      :codeLensProvider
+      :documentFormattingProvider
+      :documentRangeFormattingProvider
+      :documentOnTypeFormattingProvider
+      :documentLinkProvider
+      :colorProvider
+      :foldingRangeProvider
+      :inlayHintProvider))
+  :bind
+  (:map eglot-mode-map
+        ("C-c l a" . eglot-code-actions)
+        ("C-c l r" . eglot-rename)
+        ("C-c l k" . eldoc)
+        ("M-p"     . flycheck-previous-error)
+        ("M-n"     . flycheck-next-error)
+        ("C-c l d" . flycheck-list-errors)))
 
-(with-eval-after-load 'eglot
-  (define-key eglot-mode-map (kbd "C-c l a") 'eglot-code-actions)
-  (define-key eglot-mode-map (kbd "C-c l r") 'eglot-rename)
-  (define-key eglot-mode-map (kbd "C-c l k") 'eldoc)
-  (define-key eglot-mode-map (kbd "C-c l d") 'flymake-show-project-diagnostics)
-  (define-key eglot-mode-map (kbd "M-p") 'flymake-goto-prev-error)
-  (define-key eglot-mode-map (kbd "M-n") 'flymake-goto-next-error))
+;; Flymake ######################################################################
 
-
-(with-eval-after-load 'flymake
-  ;; Hide flymake indicators
-  (setq flymake-fringe-indicator-position nil
-        flymake-margin-indicator-position nil)
-  ;; Disable flymake stuff on the text and UI
-  (set-face-attribute 'flymake-error nil :underline nil)
+(use-package flymake
+  :defer t
+  :commands flymake-mode
+  :config
+  (set-face-attribute 'flymake-error   nil :underline nil)
   (set-face-attribute 'flymake-warning nil :underline nil)
-  (set-face-attribute 'flymake-note nil :underline nil))
+  (set-face-attribute 'flymake-note    nil :underline nil)
+  (flymake-mode -1))
+
+;; Flycheck #####################################################################
+
+(use-package flycheck
+  :ensure t
+  :init
+  (setq flycheck-indication-mode nil
+        flycheck-highlighting-mode nil))
+
+(use-package flycheck-eglot
+  :ensure t)
 
 ;; Server #######################################################################
 
 ;; Python
 (setq pyright-cmd
       (expand-file-name "~/.local/share/nvim/mason/bin/pyright-langserver"))
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               `((python-mode python-ts-mode) ,pyright-cmd "--stdio")))
+(add-to-list 'eglot-server-programs
+             `((python-mode python-ts-mode) ,pyright-cmd "--stdio"))
 
 ;; Clang
 (setq clangd-cmd
       (expand-file-name "~/.local/share/nvim/mason/bin/clangd"))
       ;; (expand-file-name "~/.local/share/nvim/mason/packages/clangd/clangd_20.1.0/bin/clangd"))
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               `((c++-mode c-mode) ,clangd-cmd)))
+(add-to-list 'eglot-server-programs
+             `((c++-mode c-mode) ,clangd-cmd))
 
 ;; Golang
 (setq gopls-cmd
       (expand-file-name "~/.local/share/nvim/mason/packages/gopls/gopls"))
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               `(go-mode ,gopls-cmd)))
+(add-to-list 'eglot-server-programs
+             `(go-mode ,gopls-cmd))
 
 ;; Typescript
 (setq tsserv-cmd
       (expand-file-name "~/.local/share/nvim/mason/bin/typescript-language-server"))
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode typescript-ts-mode tsx-ts-mode web-mode) . (,tsserv-cmd "--stdio"))))
+(add-to-list 'eglot-server-programs
+             `((js-mode js-jsx-mode typescript-mode typescript-tsx-mode typescript-ts-mode tsx-ts-mode web-mode) . (,tsserv-cmd "--stdio")))
 
 ;; Looks like it wont work with symlinks
 (setq omnisharp-cmd
       (expand-file-name "/home/pedro/.local/share/nvim/mason/packages/omnisharp/OmniSharp"))
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               `(csharp-mode . (,omnisharp-cmd "-lsp" "-z" "-e" "utf-8"))))
+(add-to-list 'eglot-server-programs
+             `(csharp-mode . (,omnisharp-cmd "-lsp" "-z" "-e" "utf-8")))
