@@ -70,15 +70,13 @@
 
 ;; Whitespaces ##################################################################
 
-(setq-default whitespace-style
-              ;; '(face spaces tabs tab-mark trailing))
-              '(face tabs tab-mark trailing))
-
-(custom-set-faces
- `(whitespace-tab      ((t (:background ,"red"))))
- `(whitespace-trailing ((t (:background ,"yellow")))))
-
-(global-whitespace-mode t)
+(use-package whitespace
+  :ensure t
+  :config
+  (setq-default whitespace-style '(face tabs tab-mark trailing))
+  (set-face-background 'whitespace-trailing "#333")
+  (set-face-background 'whitespace-tab "#357")
+  (global-whitespace-mode t))
 
 ;; Undo Tree ####################################################################
 
@@ -145,6 +143,9 @@
   :ensure t)
 
 ;; Loading  #####################################################################
+
+;; TODO: Check load function if is the right to use
+;; TODO: Make a terminal file to easy open a terminal in a horizontal split
 
 (load "~/.config/emacs/config/my-custom.el")
 

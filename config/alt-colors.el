@@ -1,6 +1,8 @@
 ;; Colors #######################################################################
 
+;; My Colors
 (defvar clr-light-blue "#4178b5")
+(defvar clr-lighter-blue "#aaccee")
 (defvar clr-light-green "#9ece6a")
 (defvar clr-light-green2 "#43a047")
 (defvar clr-lighter-gray "#fefefe")
@@ -9,6 +11,7 @@
 (defvar clr-medium-gray "#666")
 (defvar clr-bright-red "#f00")
 
+;; Third Party Colors
 (defvar clr-tokyonight-bg "#1a1b26")
 (defvar clr-tokyonight-purple "#bb9af7")
 (defvar clr-sonokai-red "#f85e84")
@@ -37,18 +40,24 @@
 (set-face-background 'match clr-light-green2)
 (set-face-foreground 'match clr-lighter-gray)
 
+;; Keyword
+(set-face-foreground 'font-lock-keyword-face clr-lighter-blue)
+
 ;; Numbers
 (add-hook 'prog-mode-hook 'highlight-numbers-mode)
 (require 'highlight-numbers)
-(set-face-foreground 'highlight-numbers-number clr-light-purple)
+;; (set-face-foreground 'highlight-numbers-number clr-light-purple)
+(set-face-foreground 'highlight-numbers-number "#ce99ce")
 
 ;; Blue comments and Doc Comments
 (set-face-foreground 'font-lock-comment-face    clr-gray-blue)
 (set-face-foreground 'font-lock-doc-face        clr-gray-blue)
 (set-face-foreground 'font-lock-doc-markup-face clr-gray-blue)
+;; (set-face-foreground 'font-lock-comment-face    "#9999ce")
 
 ;; Strings
-(set-face-foreground 'font-lock-string-face clr-light-green)
+;; (set-face-foreground 'font-lock-string-face clr-light-green)
+(set-face-foreground 'font-lock-string-face "#99ce99")
 
 ;; Line number
 (set-face-foreground 'line-number clr-medium-gray)
