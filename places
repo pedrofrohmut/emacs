@@ -1,8 +1,8 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/pedro/.config/emacs/init.el" . 2415) ("/home/pedro/.config/emacs/diboa-theme.el" . 854)
+(("/home/pedro/.config/emacs/diboa-theme.el" . 854) ("/home/pedro/.config/emacs/" (dired-filename . "/home/pedro/.config/emacs/init.el"))
+ ("/home/pedro/.config/emacs/init.el" . 1963) ("/home/pedro/.config/emacs/emacs-custom.el" . 598)
  ("/home/pedro/.config/emacs/config/alt-colors.el" . 817) ("/home/pedro/.config/emacs/early-init.el" . 287)
- ("/home/pedro/.config/emacs/" (dired-filename . "/home/pedro/.config/emacs/diboa-theme.el"))
- ("/home/pedro/.config/emacs/config/custom-theme.el" . 143) ("/home/pedro/.config/emacs/emacs-custom.el" . 2)
+ ("/home/pedro/.config/emacs/config/custom-theme.el" . 143)
  ("/home/pedro/.config/emacs/config/" (dired-filename . "/home/pedro/.config/emacs/config/alt-colors.el"))
  ("/home/pedro/programming/learning/shah-opengl/src/main.cpp" . 7497)
  ("/home/pedro/programming/learning/shah-opengl/shaders/"
