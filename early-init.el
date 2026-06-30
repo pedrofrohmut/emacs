@@ -3,6 +3,7 @@
 ;; Minimal appearance to avoid flash light effect
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 (add-to-list 'default-frame-alist '(background-color . "#1a1b26"))
+(add-to-list 'default-frame-alist '(foreground-color . "#cecece"))
 
 ;; UI
 (tool-bar-mode 0)

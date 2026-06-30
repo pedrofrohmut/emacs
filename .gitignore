@@ -7,3 +7,7 @@
 !config/**/*.el
 !README.md
 !emacs-custom.el
+
+!projects
+!places
+!diboa-theme.el

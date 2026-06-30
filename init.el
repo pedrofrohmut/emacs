@@ -62,11 +62,29 @@
 ;; Appearance ###################################################################
 
 ;; Fonts
-;; (set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 104)
-(set-face-attribute 'default nil :font "Inconsolata Nerd Font" :height 120)
+(set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 104)
+;; (set-face-attribute 'default nil :font "Inconsolata Nerd Font" :height 120)
 
 ;; Cursor
 (blink-cursor-mode 0)
+
+;; Highlight numbers (emacs do not have a face for numbers by default)
+(use-package highlight-numbers
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'highlight-numbers-mode))
+;; (require 'highlight-numbers)
+;; (set-face-foreground 'highlight-numbers-number clr-light-purple)
+;; (set-face-foreground 'highlight-numbers-number "#ce99ce")
+
+;; Fix bugged colors in compile mode
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
+;; Fixing Git fringe colors
+(require 'diff-hl)
+(set-face-background 'diff-hl-insert "#262")
+(set-face-background 'diff-hl-delete "#622")
+(set-face-background 'diff-hl-change "#266")
 
 ;; Whitespaces ##################################################################
 
@@ -152,7 +170,8 @@
 (load "~/.config/emacs/config/keybinds.el")
 
 ;; (load "~/.config/emacs/config/colors.el")
-(load "~/.config/emacs/config/alt-colors.el")
+;; (load "~/.config/emacs/config/alt-colors.el")
+(load "~/.config/emacs/config/custom-theme.el")
 
 (load "~/.config/emacs/config/lsp.el")
 
