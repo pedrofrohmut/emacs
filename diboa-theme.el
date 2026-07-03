@@ -30,6 +30,7 @@
   (fringe (:background diboa-bg))
 
   (font-lock-variable-name-face (:foreground diboa-fg))
+  (font-lock-function-name-face (:foreground diboa-fg))
   (font-lock-type-face          (:foreground diboa-fg))
 
   (cursor  (:foreground diboa-darker-gray :background diboa-yellow))

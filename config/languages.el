@@ -3,6 +3,11 @@
 (load (expand-file-name "~/.quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 
+(use-package slime
+  :ensure nil
+  :defer t
+  :commands slime)
+
 ;; Golang #######################################################################
 
 (use-package go-mode
@@ -77,6 +82,8 @@
 
 ;; JavaScript/Typescript/React ##################################################
 
+;; check if needed: jtsx (extends jsx tsx support)
+
 (setq js-indent-level 2)
 
 (setq treesit-language-source-alist
@@ -92,4 +99,6 @@
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 
 (use-package prettier-js
-  :ensure t)
+  :ensure t
+  :defer t
+  :commands prettier-js)

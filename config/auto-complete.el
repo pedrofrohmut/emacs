@@ -50,7 +50,7 @@
 ;; Minuet #######################################################################
 
 (use-package minuet
-  :ensure t
+  :ensure nil
   :defer t
   :bind
   (("C-; C-i" . #'minuet-complete-with-minibuffer)

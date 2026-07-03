@@ -197,6 +197,10 @@
 
 (load "~/.config/emacs/config/dired.el")
 
+(load "~/.config/emacs/config/integrate-terminals.el")
+
+(load "~/.config/emacs/config/evil.el")
+
 ;; Set customize file
 (setq custom-file "~/.config/emacs/emacs-custom.el")
 (load custom-file :noerror)
