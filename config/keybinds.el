@@ -75,14 +75,19 @@
 (keymap-global-set "M-c" 'capitalize-dwim) ;; Don't know why this is not default
 (keymap-global-set "M-l" 'downcase-dwim)   ;; Don't know why this is not default
 
+;; Change focus between windows
 (keymap-global-set "M-o" 'other-window)
 (keymap-global-set "M-O" (lambda()
                            (interactive)
                            (other-window -1)))
 
+;; Enlarge and shrink windows
+(keymap-global-set "C-x C--" 'shrink-window)
+(keymap-global-set "C-x C-=" 'enlarge-window)
+
 (keymap-global-set "C-M-o" #'my/open-line-up)
 (keymap-global-set "C-o" #'my/open-line-down)
-(keymap-global-set "C-j" #'my/open-line-down2)
+;; (keymap-global-set "C-j" #'my/open-line-down2)
 
 ;; Easier delete
 (keymap-global-set "C-h" 'backward-delete-char-untabify)

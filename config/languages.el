@@ -8,6 +8,10 @@
   :defer t
   :commands slime)
 
+(use-package sldb
+  :defer t
+  :commands sldb-mode)
+
 ;; Golang #######################################################################
 
 (use-package go-mode

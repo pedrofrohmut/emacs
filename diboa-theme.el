@@ -29,9 +29,12 @@
 
   (fringe (:background diboa-bg))
 
+  ;; Removing colors where not desired
   (font-lock-variable-name-face (:foreground diboa-fg))
   (font-lock-function-name-face (:foreground diboa-fg))
   (font-lock-type-face          (:foreground diboa-fg))
+  (eglot-semantic-static        (:foreground diboa-fg))
+  (eglot-semantic-namespace     (:foreground diboa-fg))
 
   (cursor  (:foreground diboa-darker-gray :background diboa-yellow))
 

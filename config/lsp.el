@@ -5,13 +5,20 @@
 (use-package eglot
   :ensure t
   :defer t
+
   :init
   (setq eglot-code-action-indicator '()) ;; Hides the lamp for code actions
+
   :config
-  (add-to-list 'eglot-stay-out-of 'flymake) ;; Don't start flymake with eglot
-  (add-to-list 'eglot-stay-out-of 'eldoc) ;; Don't start eldoc with eglot
-  ;; (add-hook 'eglot-managed-mode-hook #'flycheck-mode)
-  ;; (add-hook 'eglot-managed-mode-hook #'flycheck-eglot-mode)
+  ;; (add-to-list 'eglot-stay-out-of 'flymake) ;; Don't start flymake with eglot
+  ;; (add-to-list 'eglot-stay-out-of 'eldoc) ;; Don't start eldoc with eglot
+  (setq eglot-stay-out-of '(flymake))
+  (add-hook 'eglot-managed-mode-hook #'flycheck-mode)
+  (add-hook 'eglot-managed-mode-hook #'flycheck-eglot-mode)
+
+  (add-to-list 'eglot-server-programs
+               '((csharp-mode csharp-ts-mode) . ("omnisharp" "-lsp" "-z" "-e" "utf-8")))
+
   :custom
   (eglot-ignored-server-capabilities
     '(:documentHighlightProvider
@@ -23,6 +30,7 @@
       :colorProvider
       :foldingRangeProvider
       :inlayHintProvider))
+
   :bind
   (:map eglot-mode-map
         ("C-c l a" . eglot-code-actions)
