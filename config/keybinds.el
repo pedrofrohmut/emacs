@@ -1,4 +1,25 @@
-;; Keybinds #####################################################################
+;; My macros ####################################################################
+
+(defmacro n-times (n &rest body)
+  "Execute the body n times
+Example: (n-times 5 (insert-char 42))"
+  `(dotimes (_, n)
+     ,@body))
+
+(defmacro n-times-interactive (n &rest body)
+  "Execute the body n times but wrapped with a interactive lambda to be used for keybinds"
+  `(lambda ()
+     (interactive)
+     (dotimes (_, n)
+       ,@body)))
+
+(defmacro my/cmd (&rest body)
+  "Wrap with interactive lambda"
+  `(lambda ()
+     (interactive)
+     ,@body))
+
+;; My Functions #################################################################
 
 (defun my/switch-to-recent-buffer ()
   (interactive)
@@ -45,6 +66,8 @@
   (move-end-of-line 1)
   (newline-and-indent))
 
+;; Keybinds #####################################################################
+
 ;; Scrolling
 (keymap-global-set "M-{" #'my/scroll-half-page-up)
 (keymap-global-set "M-}" #'my/scroll-half-page-down)
@@ -77,16 +100,17 @@
 
 ;; Change focus between windows
 (keymap-global-set "M-o" 'other-window)
-(keymap-global-set "M-O" (lambda()
-                           (interactive)
-                           (other-window -1)))
+(keymap-global-set "M-O" (my/cmd (other-window -1))
 
 ;; Enlarge and shrink windows
-(keymap-global-set "C-x C--" 'shrink-window)
-(keymap-global-set "C-x C-=" 'enlarge-window)
+(keymap-global-set "M-<up>"    (my/cmd (shrink-window 5)))
+(keymap-global-set "M-<left>"  (my/cmd (shrink-window-horizontally 5)))
+(keymap-global-set "M-<right>" (my/cmd (enlarge-window-horizontally 5)))
+(keymap-global-set "M-<down>"  (my/cmd (enlarge-window 5)))
 
 (keymap-global-set "C-M-o" #'my/open-line-up)
 (keymap-global-set "C-o" #'my/open-line-down)
+;; Not really using that much. Testing with C-j when i need enter with no indent
 ;; (keymap-global-set "C-j" #'my/open-line-down2)
 
 ;; Easier delete
