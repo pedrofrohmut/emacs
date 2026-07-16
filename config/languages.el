@@ -106,3 +106,9 @@
   :ensure t
   :defer t
   :commands prettier-js)
+
+
+;; OCaml ########################################################################
+
+(use-package tuareg
+  :ensure t)

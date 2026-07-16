@@ -74,6 +74,10 @@
 
   ;; Prompt
   (minibuffer-prompt (:foreground diboa-lighter-blue))
+
+  ;; Tuareg
+  (tuareg-font-lock-governing-face (:foreground diboa-lighter-blue))
+  (tuareg-font-lock-operator-face (:foreground diboa-lighter-blue))
   )
  )
 
