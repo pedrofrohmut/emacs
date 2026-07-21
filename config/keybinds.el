@@ -100,7 +100,7 @@ Example: (n-times 5 (insert-char 42))"
 
 ;; Change focus between windows
 (keymap-global-set "M-o" 'other-window)
-(keymap-global-set "M-O" (my/cmd (other-window -1))
+(keymap-global-set "M-O" (my/cmd (other-window -1)))
 
 ;; Enlarge and shrink windows
 (keymap-global-set "M-<up>"    (my/cmd (shrink-window 5)))

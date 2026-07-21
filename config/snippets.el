@@ -1,7 +1,7 @@
 (use-package yasnippet
   :ensure t
-  :defer t
-  :commands yas-expand
+  ;; :defer t
+  ;; :commands yas-expand
   :bind
   (("C-; k" . yas-expand)
    :map yas-minor-mode-map

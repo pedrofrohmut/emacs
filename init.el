@@ -94,7 +94,8 @@
   (setq-default whitespace-style '(face tabs tab-mark trailing))
   (set-face-background 'whitespace-trailing "#333")
   (set-face-background 'whitespace-tab "#357")
-  (global-whitespace-mode t))
+  ;; (global-whitespace-mode t)
+  )
 
 ;; Undo Tree ####################################################################
 

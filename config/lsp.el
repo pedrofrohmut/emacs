@@ -40,6 +40,10 @@
         ("M-n"     . flycheck-next-error)
         ("C-c l d" . flycheck-list-errors)))
 
+(use-package eglot-typescript-preset
+  :ensure nil
+  :defer t)
+
 ;; Flymake ######################################################################
 
 (use-package flymake

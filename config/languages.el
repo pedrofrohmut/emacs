@@ -111,4 +111,7 @@
 ;; OCaml ########################################################################
 
 (use-package tuareg
-  :ensure t)
+  :ensure t
+  :defer t)
+
+(add-to-list 'auto-mode-alist '("\\.ml\\'" . tuareg-mode))
