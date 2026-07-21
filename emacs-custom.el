@@ -10,8 +10,8 @@
  '(package-selected-packages
    '(autothemer avy cape consult corfu-prescient dape diff-hl dired-sidebar eglot eglot-typescript-preset emmet-mode evil flycheck
                 flycheck-eglot glsl-mode go-mode highlight-numbers js-react-redux-yasnippets json-mode lua-mode marginalia markdown-mode
-                move-text multiple-cursors orderless prettier-js surround symbols-outline tuareg undo-tree vertico-prescient
-                visual-fill-column vterm yaml-mode yasnippet-snippets)))
+                move-text multiple-cursors orderless prettier-js surround symbols-outline syntax-subword tuareg undo-tree
+                vertico-prescient visual-fill-column vterm yaml-mode yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

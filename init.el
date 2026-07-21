@@ -97,6 +97,14 @@
   ;; (global-whitespace-mode t)
   )
 
+;; Syntax Subword ###############################################################
+
+(use-package syntax-subword
+  :ensure t
+  :init
+  (setq syntax-subword-skip-spaces t)
+  :hook (prog-mode . syntax-subword-mode))
+
 ;; Undo Tree ####################################################################
 
 (use-package undo-tree
