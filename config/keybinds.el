@@ -66,6 +66,10 @@ Example: (n-times 5 (insert-char 42))"
   (move-end-of-line 1)
   (newline-and-indent))
 
+(defun my/keymap-global-set (keys command)
+  (dolist (key keys)
+    (keymap-global-set key command)))
+
 ;; Keybinds #####################################################################
 
 ;; Scrolling
@@ -91,7 +95,8 @@ Example: (n-times 5 (insert-char 42))"
 (keymap-global-set "C-`" 'quoted-insert)
 (keymap-global-set "C-x f" 'find-file-at-point)
 (keymap-global-set "C-." 'repeat)
-;;(keymap-global-set "C-c C-c" 'project-recompile)
+(my/keymap-global-set '("C-c c" "C-c C-c") 'compile)
+;; (keymap-global-set "C-c C-c" 'compile)
 (keymap-global-set "C-x p r" 'project-recompile)
 
 (keymap-global-set "M-u" 'upcase-dwim)     ;; Don't know why this is not default

@@ -99,11 +99,15 @@
 
 ;; Syntax Subword ###############################################################
 
+;; Changes the word concept in emacs that affects M-b and M-f and other word
+;; functions and keymaps
 (use-package syntax-subword
-  :ensure t
+  :ensure nil
+  :defer t
   :init
   (setq syntax-subword-skip-spaces t)
-  :hook (prog-mode . syntax-subword-mode))
+  ;; :hook (prog-mode . syntax-subword-mode)
+  )
 
 ;; Undo Tree ####################################################################
 
