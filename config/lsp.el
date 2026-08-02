@@ -9,15 +9,25 @@
   :init
   (setq eglot-code-action-indicator '()) ;; Hides the lamp for code actions
 
+
   :config
+  (setq eglot-stay-out-of '(flymake eldoc))
   ;; (add-to-list 'eglot-stay-out-of 'flymake) ;; Don't start flymake with eglot
   ;; (add-to-list 'eglot-stay-out-of 'eldoc) ;; Don't start eldoc with eglot
-  (setq eglot-stay-out-of '(flymake))
+
   (add-hook 'eglot-managed-mode-hook #'flycheck-mode)
   (add-hook 'eglot-managed-mode-hook #'flycheck-eglot-mode)
 
+  ;; Neovim LSP for reference:
+  ;; - Command: { "OmniSharp", "-z", "--hostPID", "18713",
+  ;;              "DotNet:enablePackageRestore=false", "--encoding", "utf-8", "--languageserver" }
+
+  ;; Old Csharp config:
+  ;; '((csharp-mode csharp-ts-mode) . '((csharp-mode csharp-ts-mode) . ("omnisharp" "-lsp" "-z" "-e" "utf-8")))
+
   (add-to-list 'eglot-server-programs
-               '((csharp-mode csharp-ts-mode) . ("omnisharp" "-lsp" "-z" "-e" "utf-8")))
+               '((csharp-mode csharp-ts-mode) .
+                 ("omnisharp" "-lsp" "-z" "--hostPID" "18713" "DotNet:enablePackageRestore=false" "-e" "utf-8")))
 
   :custom
   (eglot-ignored-server-capabilities

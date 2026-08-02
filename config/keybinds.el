@@ -48,9 +48,10 @@ Example: (n-times 5 (insert-char 42))"
 (defun my/open-line-up ()
   "Open a new line on the line up in indentation"
   (interactive)
+  (move-beginning-of-line 1)
+  (newline-and-indent)
   (previous-line)
-  (move-end-of-line 1)
-  (newline-and-indent))
+  (indent-for-tab-command))
 
 (defun my/open-line-down ()
   "Open a new line on the line up in indentation"
