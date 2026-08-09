@@ -19,27 +19,12 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)
 
-;; Identation
-(setq-default indent-tabs-mode nil
-              tab-always-indent t
-              c-tab-always-indent t
-              tab-width 4)
-
 ;; Delete the selected text when start typing
 (delete-selection-mode 1)
-
-;; Maching highlight
-(show-paren-mode t)
-(setq show-paren-delay 0)
-(setq show-paren-style 'parenthesis)
-(set-face-attribute 'show-paren-match nil :foreground "#f00" :background "#1a1b2c" :weight 'ultra-bold)
 
 ;; Update emacs buffers when the files change outside (keep buffers sync)
 (setq global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode t)
-
-;; Saves your location in files for the next time you open it
-(save-place-mode t)
 
 ;; Show cursor position in statusbar
 (setq column-number-mode t)
@@ -63,7 +48,6 @@
 
 ;; Fonts
 (set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 104)
-;; (set-face-attribute 'default nil :font "Inconsolata Nerd Font" :height 120)
 
 ;; Cursor
 (blink-cursor-mode 0)
@@ -73,18 +57,6 @@
   :ensure t
   :config
   (add-hook 'prog-mode-hook 'highlight-numbers-mode))
-;; (require 'highlight-numbers)
-;; (set-face-foreground 'highlight-numbers-number clr-light-purple)
-;; (set-face-foreground 'highlight-numbers-number "#ce99ce")
-
-;; Fix bugged colors in compile mode
-(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
-
-;; Fixing Git fringe colors
-(require 'diff-hl)
-(set-face-background 'diff-hl-insert "#262")
-(set-face-background 'diff-hl-delete "#622")
-(set-face-background 'diff-hl-change "#266")
 
 ;; Whitespaces ##################################################################
 
@@ -97,62 +69,11 @@
   ;; (global-whitespace-mode t)
   )
 
-;; Syntax Subword ###############################################################
-
-;; Changes the word concept in emacs that affects M-b and M-f and other word
-;; functions and keymaps
-;; (use-package syntax-subword
-;;   :ensure nil
-;;   :defer t
-;;   :init
-;;   (setq syntax-subword-skip-spaces t)
-;;   ;; :hook (prog-mode . syntax-subword-mode)
-;;   )
-
-;; Undo Tree ####################################################################
-
-;; (use-package undo-tree
-;;   :ensure t
-;;   :config
-;;   (global-undo-tree-mode)
-;;   (setq undo-tree-visualizer-timestamps t
-;;         undo-tree-auto-save-history nil
-;;         undo-tree-visualizer-diff t))
-
 ;; Surround #####################################################################
 
 (use-package surround
   :ensure t
   :bind-keymap ("C-," . surround-keymap))
-
-;; Editorconfig #################################################################
-
-;; (use-package editorconfig
-;;   :ensure t
-;;   :config
-;;   (editorconfig-mode 1))
-
-;; Move Text ####################################################################
-
-;; (use-package move-text
-;;   :ensure t
-;;   :bind
-;;   (("M--" . move-text-region-up)
-;;    ("M-=" . move-text-region-down)))
-
-;; Multicursors #################################################################
-
-;; (use-package multiple-cursors
-;;   :ensure t
-;;   :bind
-;;   (("C-<" .   'mc/skip-to-next-like-this)
-;;    ("C->" .   'mc/mark-next-like-this)
-;;    ("C-c e" . 'mc/edit-lines)
-;;    :map mc/keymap
-;;    ("RET" . nil)
-;;    ("<return>" . nil))
-;;   :config
-;;   (add-to-list 'mc/cmds-to-run-for-all 'self-insert-command))
 
 ;; Fill Column ##################################################################
 
@@ -167,53 +88,13 @@
 
 (add-hook 'after-init-hook 'global-visual-fill-column-mode)
 
-;; Highlight Numbers ############################################################
+;; Custom Theme #################################################################
 
-;; Emacs does not have this group by default
-(use-package highlight-numbers
+(use-package autothemer
   :ensure t)
 
-;; Loading  #####################################################################
+(load-theme 'diboa t)
 
-;; TODO: Check load function if is the right to use
-;; TODO: Make a terminal file to easy open a terminal in a horizontal split
-
-(load "~/.config/emacs/config/my-custom.el")
-
-(load "~/.config/emacs/config/keybinds.el")
-
-;; (load "~/.config/emacs/config/colors.el")
-;; (load "~/.config/emacs/config/alt-colors.el")
-(load "~/.config/emacs/config/custom-theme.el")
-
-(load "~/.config/emacs/config/lsp.el")
-
-(load "~/.config/emacs/config/debug.el")
-
-(load "~/.config/emacs/config/symbols-outline.el")
-
-(load "~/.config/emacs/config/auto-complete.el")
-
-(load "~/.config/emacs/config/languages.el")
-
-(load "~/.config/emacs/config/snippets.el")
-
-(load "~/.config/emacs/config/mini-buffer.el")
-
-(load "~/.config/emacs/config/prescient.el")
-
-(load "~/.config/emacs/config/github.el")
-
-(load "~/.config/emacs/config/consult.el")
-
-(load "~/.config/emacs/config/avy.el")
-
-(load "~/.config/emacs/config/dired.el")
-
-(load "~/.config/emacs/config/integrate-terminals.el")
-
-(load "~/.config/emacs/config/evil.el")
-
-;; Set customize file
+;; Set customize file ###########################################################
 (setq custom-file "~/.config/emacs/emacs-custom.el")
 (load custom-file :noerror)
