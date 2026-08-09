@@ -58,6 +58,12 @@
   :config
   (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
+;; Maching highlight
+(show-paren-mode t)
+(setq show-paren-delay 0)
+(setq show-paren-style 'parenthesis)
+(set-face-attribute 'show-paren-match nil :foreground "#f00" :background "#1a1b2c" :weight 'ultra-bold)
+
 ;; Whitespaces ##################################################################
 
 (use-package whitespace
@@ -94,6 +100,21 @@
   :ensure t)
 
 (load-theme 'diboa t)
+
+;; Extra files ##################################################################
+
+(load "~/.config/emacs/my-functions.el")
+
+(load "~/.config/emacs/config/languages.el")
+(load "~/.config/emacs/config/keybinds.el")
+(load "~/.config/emacs/config/auto-complete.el")
+(load "~/.config/emacs/config/consult.el")
+(load "~/.config/emacs/config/dired.el")
+(load "~/.config/emacs/config/git.el")
+(load "~/.config/emacs/config/integrate-terminals.el")
+(load "~/.config/emacs/config/mini-buffer.el")
+(load "~/.config/emacs/config/symbols-outline.el")
+(load "~/.config/emacs/config/lsp.el")
 
 ;; Set customize file ###########################################################
 (setq custom-file "~/.config/emacs/emacs-custom.el")
