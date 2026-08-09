@@ -13,3 +13,10 @@
   (let* ((user-input (read-string "Enter a decimal number for the unicode character: "))
          (hex-value (string-to-number (format "%x" (string-to-number user-input 10)) 16)))
     (insert-char hex-value)))
+
+(defun my/fill-paragraph ()
+  (interactive)
+  (let ((fill-column 80))
+    (fill-paragraph)))
+  ;; (let ((fill-column 80))
+  ;;   (call-interactively #'fill-paragraph)))

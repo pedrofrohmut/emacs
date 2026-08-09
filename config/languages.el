@@ -26,12 +26,12 @@
 
 ;; C/C++ ########################################################################
 
-(setq c-basic-offset 4)
-(setq c-hanging-braces-alist '(substatement-open . (after)))
-(setq c-offsets-alist '((substatement-open . 0)
-                        (block-open        . 0)
-                        (brace-list-open   . 0)
-                        (brace-list-close  . 0)))
+;; (setq c-basic-offset 4)
+;; (setq c-hanging-braces-alist '(substatement-open . (after)))
+;; (setq c-offsets-alist '((substatement-open . 0)
+;;                         (block-open        . 0)
+;;                         (brace-list-open   . 0)
+;;                         (brace-list-close  . 0)))
 
 ;; CSharp #######################################################################
 
@@ -76,7 +76,7 @@
   :ensure t
   :defer t
   :bind
-  (("C-; j" . emmet-expand-line)) ;; Maybe unbind C-j is needed
+  (("C-; k" . emmet-expand-line)) ;; Maybe unbind C-j is needed
   :hook
   (sgml-mode . emmet-mode)
   :config

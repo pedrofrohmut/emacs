@@ -101,23 +101,23 @@
 
 ;; Changes the word concept in emacs that affects M-b and M-f and other word
 ;; functions and keymaps
-(use-package syntax-subword
-  :ensure nil
-  :defer t
-  :init
-  (setq syntax-subword-skip-spaces t)
-  ;; :hook (prog-mode . syntax-subword-mode)
-  )
+;; (use-package syntax-subword
+;;   :ensure nil
+;;   :defer t
+;;   :init
+;;   (setq syntax-subword-skip-spaces t)
+;;   ;; :hook (prog-mode . syntax-subword-mode)
+;;   )
 
 ;; Undo Tree ####################################################################
 
-(use-package undo-tree
-  :ensure t
-  :config
-  (global-undo-tree-mode)
-  (setq undo-tree-visualizer-timestamps t
-        undo-tree-auto-save-history nil
-        undo-tree-visualizer-diff t))
+;; (use-package undo-tree
+;;   :ensure t
+;;   :config
+;;   (global-undo-tree-mode)
+;;   (setq undo-tree-visualizer-timestamps t
+;;         undo-tree-auto-save-history nil
+;;         undo-tree-visualizer-diff t))
 
 ;; Surround #####################################################################
 
@@ -127,32 +127,32 @@
 
 ;; Editorconfig #################################################################
 
-(use-package editorconfig
-  :ensure t
-  :config
-  (editorconfig-mode 1))
+;; (use-package editorconfig
+;;   :ensure t
+;;   :config
+;;   (editorconfig-mode 1))
 
 ;; Move Text ####################################################################
 
-(use-package move-text
-  :ensure t
-  :bind
-  (("M--" . move-text-region-up)
-   ("M-=" . move-text-region-down)))
+;; (use-package move-text
+;;   :ensure t
+;;   :bind
+;;   (("M--" . move-text-region-up)
+;;    ("M-=" . move-text-region-down)))
 
 ;; Multicursors #################################################################
 
-(use-package multiple-cursors
-  :ensure t
-  :bind
-  (("C-<" .   'mc/skip-to-next-like-this)
-   ("C->" .   'mc/mark-next-like-this)
-   ("C-c e" . 'mc/edit-lines)
-   :map mc/keymap
-   ("RET" . nil)
-   ("<return>" . nil))
-  :config
-  (add-to-list 'mc/cmds-to-run-for-all 'self-insert-command))
+;; (use-package multiple-cursors
+;;   :ensure t
+;;   :bind
+;;   (("C-<" .   'mc/skip-to-next-like-this)
+;;    ("C->" .   'mc/mark-next-like-this)
+;;    ("C-c e" . 'mc/edit-lines)
+;;    :map mc/keymap
+;;    ("RET" . nil)
+;;    ("<return>" . nil))
+;;   :config
+;;   (add-to-list 'mc/cmds-to-run-for-all 'self-insert-command))
 
 ;; Fill Column ##################################################################
 

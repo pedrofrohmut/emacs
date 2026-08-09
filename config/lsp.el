@@ -29,6 +29,10 @@
                '((csharp-mode csharp-ts-mode) .
                  ("omnisharp" "-lsp" "-z" "--hostPID" "18713" "DotNet:enablePackageRestore=false" "-e" "utf-8")))
 
+  (add-to-list 'eglot-server-programs
+               '((js-mode js-jsx-mode typescript-mode typescript-tsx-mode typescript-ts-mode tsx-ts-mode web-mode) .
+                 ("~/.local/share/nvim/mason/bin/typescript-language-server" "--stdio")))
+
   :custom
   (eglot-ignored-server-capabilities
     '(:documentHighlightProvider

@@ -3,7 +3,7 @@
   ;; :defer t
   ;; :commands yas-expand
   :bind
-  (("C-; k" . yas-expand)
+  (("C-; s" . yas-expand)
    :map yas-minor-mode-map
    ("TAB"     . nil)  ;; Unmap yas-expand
    ("C-c C-s" . nil)  ;; Unmap yas-insert-snippet
