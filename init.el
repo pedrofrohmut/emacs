@@ -44,6 +44,9 @@
   (interactive)
   (save-buffers-kill-emacs))
 
+;; Support for osc in man mode `M-x man`
+(add-hook 'Man-cooked-hook (lambda () (ansi-osc-apply-on-region (point-min) (point-max))))
+
 ;; Appearance ###################################################################
 
 ;; Fonts
@@ -101,11 +104,12 @@
 
 (load-theme 'diboa t)
 
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
 ;; Extra files ##################################################################
 
 (load "~/.config/emacs/my-functions.el")
 
-(load "~/.config/emacs/config/languages.el")
 (load "~/.config/emacs/config/keybinds.el")
 (load "~/.config/emacs/config/auto-complete.el")
 (load "~/.config/emacs/config/consult.el")
@@ -115,6 +119,7 @@
 (load "~/.config/emacs/config/mini-buffer.el")
 (load "~/.config/emacs/config/symbols-outline.el")
 (load "~/.config/emacs/config/lsp.el")
+(load "~/.config/emacs/config/languages.el")
 
 ;; Set customize file ###########################################################
 (setq custom-file "~/.config/emacs/emacs-custom.el")

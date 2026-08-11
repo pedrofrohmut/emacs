@@ -51,6 +51,13 @@
   (dolist (key keys)
     (keymap-global-set key command)))
 
+(defun my/kill-region-or-backward-word ()
+  "backward-kill-word if no active region and kill-region otherwise"
+  (interactive)
+  (if (region-active-p)
+      (kill-region (region-beginning) (region-end))
+    (backward-kill-word 1)))
+
 ;; Keybinds #####################################################################
 
 ;; Scrolling
@@ -84,6 +91,9 @@
 ;; Change focus between windows
 (keymap-global-set "M-o" 'other-window)
 (keymap-global-set "M-O" (my/cmd (other-window -1)))
+
+;; Ctrl_w do 2 things
+(keymap-global-set "C-w" #'my/kill-region-or-backward-word)
 
 ;; Enlarge and shrink windows
 (keymap-global-set "M-<up>"    (my/cmd (shrink-window 5)))
