@@ -15,6 +15,12 @@
 
 (setq inhibit-startup-message t)
 
+;; Identation
+(setq-default indent-tabs-mode nil
+              tab-always-indent t
+              c-tab-always-indent t
+              tab-width 4)
+
 ;; Line numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)

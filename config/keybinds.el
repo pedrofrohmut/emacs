@@ -58,6 +58,12 @@
       (kill-region (region-beginning) (region-end))
     (backward-kill-word 1)))
 
+;; Unset keybinds ################################################################
+
+;; Avoid minimising and closing by accident
+(keymap-global-unset "C-z")
+(keymap-global-unset "C-x C-c")
+
 ;; Keybinds #####################################################################
 
 ;; Scrolling
@@ -82,6 +88,7 @@
 (keymap-global-set "C-x f" 'find-file-at-point)
 (keymap-global-set "C-<right>" 'recenter-top-bottom) ;; C-M-l
 (keymap-global-set "C-<down>" 'join-line) ;; C-M-j
+(keymap-global-set "C-x C-c" 'compile)
 
 ;; Change words case
 (keymap-global-set "M-u" 'upcase-dwim)     ;; Don't know why this is not default
@@ -111,9 +118,3 @@
 (keymap-global-set "C-<left>" 'backward-kill-word) ;; C-M-j (fix for keyd)
 (keymap-global-set "C-l" 'delete-forward-char)
 (keymap-global-set "C-<up>" 'kill-sexp) ;; C-M-k (fix for keyd)
-
-;; Unset keybinds ################################################################
-
-;; Avoid minimising and closing by accident
-(keymap-global-unset "C-z")
-(keymap-global-unset "C-x C-c")

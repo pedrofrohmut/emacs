@@ -10,8 +10,11 @@
   (setq eglot-code-action-indicator '()) ;; Hides the lamp icon for code actions
 
   :config
+  ;; Turn off flymake and eldoc
   (setq eglot-stay-out-of '(flymake eldoc))
+  (add-hook 'eglot-managed-mode-hook (lambda () (eldoc-mode -1) (flymake-mode -1)))
 
+  ;; Flycheck
   (add-hook 'eglot-managed-mode-hook #'flycheck-mode)
   (add-hook 'eglot-managed-mode-hook #'flycheck-eglot-mode)
 
@@ -27,15 +30,15 @@
 
   :custom
   (eglot-ignored-server-capabilities
-    '(:documentHighlightProvider
-      :codeLensProvider
-      :documentFormattingProvider
-      :documentRangeFormattingProvider
-      :documentOnTypeFormattingProvider
-      :documentLinkProvider
-      :colorProvider
-      :foldingRangeProvider
-      :inlayHintProvider))
+   '(:documentHighlightProvider
+     :codeLensProvider
+     :documentFormattingProvider
+     :documentRangeFormattingProvider
+     :documentOnTypeFormattingProvider
+     :documentLinkProvider
+     :colorProvider
+     :foldingRangeProvider
+     :inlayHintProvider))
 
   :bind
   (:map eglot-mode-map
