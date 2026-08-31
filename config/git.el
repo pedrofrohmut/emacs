@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Diff Highlight ###############################################################
 
 (use-package diff-hl

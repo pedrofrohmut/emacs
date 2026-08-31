@@ -1,0 +1,15 @@
+(defun my/decimal-to-hex ()
+  (interactive)
+  (let ((user-input (read-string "Enter a decimal number (base 10): ")))
+    (message "Decimal to Hex: %s => 0x%x" user-input (string-to-number user-input 10))))
+
+(defun my/hex-to-decimal ()
+  (interactive)
+  (let ((user-input (read-string "Enter a hex number (base 16): ")))
+    (message "Hex to Decimal: 0x%s => %d" user-input (string-to-number user-input 16))))
+
+(defun my/insert-char-decimal ()
+  (interactive)
+  (let* ((user-input (read-string "Enter a decimal number for the unicode character: "))
+         (hex-value (string-to-number (format "%x" (string-to-number user-input 10)) 16)))
+    (insert-char hex-value)))

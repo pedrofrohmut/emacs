@@ -1,5 +1,3 @@
-;; -*- lexical-binding: t; -*-
-
 ;; Dired ########################################################################
 
 (setq dired-auto-revert-buffer t

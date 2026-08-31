@@ -1,5 +1,3 @@
-;; -*- lexical-binding: t; -*-
-
 ;; Vertico ######################################################################
 
 ;; Enable vertico
@@ -9,7 +7,7 @@
   (vertico-mode))
 
 ;; Colors
-(set-face-attribute 'vertico-current nil :foreground "#fff" :background "#3f3f3f")
+(set-face-attribute 'vertico-current nil :foreground "#fff" :background "#552")
 
 ;; Marginalia #######################################################################################
 

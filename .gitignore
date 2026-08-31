@@ -1,12 +1,7 @@
-*
-
-!.gitignore
-!init.el
-!early-init.el
-!config
-!config/**/*.el
-!README.md
-!emacs-custom.el
-# !projects
-!diboa-theme.el
-!OLD/
+auto-save-list/
+eln-cache/
+elpa/
+places
+projects
+transient/
+tree-sitter/

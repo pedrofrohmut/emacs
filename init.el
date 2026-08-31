@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Setup Garbage collection back to normal after init
 (add-hook 'emacs-startup-hook
           (lambda ()

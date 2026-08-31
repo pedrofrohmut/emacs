@@ -1,6 +1,17 @@
-;; -*- lexical-binding: t; -*-
-
 ;; My macros ####################################################################
+
+(defmacro n-times (n &rest body)
+  "Execute the body n times
+Example: (n-times 5 (insert-char 42))"
+  `(dotimes (_, n)
+     ,@body))
+
+(defmacro n-times-interactive (n &rest body)
+  "Execute the body n times but wrapped with a interactive lambda to be used for keybinds"
+  `(lambda ()
+     (interactive)
+     (dotimes (_, n)
+       ,@body)))
 
 (defmacro my/cmd (&rest body)
   "Wrap with interactive lambda"
@@ -48,23 +59,17 @@
   (move-end-of-line 1)
   (newline-and-indent))
 
+(defun my/open-line-down2 ()
+  "Open a new line on the line up in indentation"
+  (interactive)
+  (newline-and-indent)
+  (previous-line)
+  (move-end-of-line 1)
+  (newline-and-indent))
+
 (defun my/keymap-global-set (keys command)
-  "You set a key list to a command"
   (dolist (key keys)
     (keymap-global-set key command)))
-
-(defun my/kill-region-or-backward-word ()
-  "backward-kill-word if no active region and kill-region otherwise"
-  (interactive)
-  (if (region-active-p)
-      (kill-region (region-beginning) (region-end))
-    (backward-kill-word 1)))
-
-;; Unset keybinds ################################################################
-
-;; Avoid minimising and closing by accident
-(keymap-global-unset "C-z")
-(keymap-global-unset "C-x C-c")
 
 ;; Keybinds #####################################################################
 
@@ -75,7 +80,9 @@
 (keymap-global-set "M-]" #'my/scroll-quarter-page-down)
 
 ;; Buffers
-(my/keymap-global-set '("M-g b" "M-g M-b") #'my/switch-to-recent-buffer)
+(keymap-global-set "M-g b" #'my/switch-to-recent-buffer)
+(keymap-global-set "M-g M-b" #'my/switch-to-recent-buffer)
+;; (keymap-global-set "C-x C-b" 'switch-to-buffer-other-window)
 (keymap-global-set "C-x C-b" 'ibuffer)
 
 ;; Windows
@@ -88,11 +95,11 @@
 (keymap-global-set "C-q" 'project-find-file)
 (keymap-global-set "C-`" 'quoted-insert)
 (keymap-global-set "C-x f" 'find-file-at-point)
-(keymap-global-set "C-<right>" 'recenter-top-bottom) ;; C-M-l
-(keymap-global-set "C-<down>" 'join-line) ;; C-M-j
-(keymap-global-set "C-x C-c" 'compile)
+(keymap-global-set "C-." 'repeat)
+(my/keymap-global-set '("C-c c" "C-c C-c") 'compile)
+;; (keymap-global-set "C-c C-c" 'compile)
+(keymap-global-set "C-x p r" 'project-recompile)
 
-;; Change words case
 (keymap-global-set "M-u" 'upcase-dwim)     ;; Don't know why this is not default
 (keymap-global-set "M-c" 'capitalize-dwim) ;; Don't know why this is not default
 (keymap-global-set "M-l" 'downcase-dwim)   ;; Don't know why this is not default
@@ -101,22 +108,29 @@
 (keymap-global-set "M-o" 'other-window)
 (keymap-global-set "M-O" (my/cmd (other-window -1)))
 
-;; Ctrl_w do 2 things
-(keymap-global-set "C-w" #'my/kill-region-or-backward-word)
-
 ;; Enlarge and shrink windows
 (keymap-global-set "M-<up>"    (my/cmd (shrink-window 5)))
 (keymap-global-set "M-<left>"  (my/cmd (shrink-window-horizontally 5)))
 (keymap-global-set "M-<right>" (my/cmd (enlarge-window-horizontally 5)))
 (keymap-global-set "M-<down>"  (my/cmd (enlarge-window 5)))
 
-;; Easy open line up and down
 (keymap-global-set "C-M-o" #'my/open-line-up)
 (keymap-global-set "C-o" #'my/open-line-down)
+;; Not really using that much. Testing with C-j when i need enter with no indent
+;; (keymap-global-set "C-j" #'my/open-line-down2)
 
 ;; Easier delete
 (keymap-global-set "C-h" 'backward-delete-char-untabify)
 (keymap-set isearch-mode-map "C-h" 'isearch-delete-char)
-(keymap-global-set "C-<left>" 'backward-kill-word) ;; C-M-j (fix for keyd)
+(keymap-global-set "C-<left>" 'backward-kill-word)
 (keymap-global-set "C-l" 'delete-forward-char)
-(keymap-global-set "C-<up>" 'kill-sexp) ;; C-M-k (fix for keyd)
+(keymap-global-set "C-<up>" 'kill-sexp) ;; C-M-k
+
+(keymap-global-set "C-<right>" 'recenter-top-bottom) ;; C-M-l
+(keymap-global-set "C-<down>" 'join-line) ;; C-M-j
+
+;; Unset keybinds ################################################################
+
+;; Avoid minimising and closing by accident
+(keymap-global-unset "C-z")
+(keymap-global-unset "C-x C-c")

@@ -1,5 +1,3 @@
-;; -*- lexical-binding: t; -*-
-
 ;; Symbols Outline ##############################################################
 
 (use-package symbols-outline

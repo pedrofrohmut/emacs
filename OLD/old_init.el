@@ -1,0 +1,182 @@
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 800 000))))
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
+(package-initialize)
+
+;; Straight #####################################################################
+
+;; TODO: Remake config with straight if it is good enough
+
+;; ##############################################################################
+
+(setq inhibit-startup-message t)
+
+;; Cursor
+(blink-cursor-mode 0)
+
+;; Line numbers
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
+;; (global-hl-line-mode)
+
+;; Identation
+(setq-default indent-tabs-mode nil
+              tab-always-indent t
+              c-tab-always-indent t
+              tab-width 4)
+
+;; Delete the selected text when start typing
+(delete-selection-mode 1)
+
+;; Pairs
+;(electric-pair-mode nil)
+
+;; Maching highlight
+(show-paren-mode t)
+(setq show-paren-delay 0)
+(setq show-paren-style 'parenthesis)
+(set-face-attribute 'show-paren-match nil :foreground "#f00" :background "#1a1b2c" :weight 'ultra-bold)
+
+;; Update emacs buffers when the files change outside (keep buffers sync)
+(setq global-auto-revert-non-file-buffers t)
+(global-auto-revert-mode t)
+
+;; Saves your location in files for the next time you open it
+(save-place-mode t)
+
+;; Show cursor position in statusbar
+(setq column-number-mode t)
+
+;; On file save
+(add-hook 'write-file-hooks 'delete-trailing-whitespace)
+
+;; Files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+;; Set root dir for project.el
+(setq project-vc-extra-root-markers '(".project.el" ".projectile" ))
+
+;; Close emacs on the extended commands
+(defun quit-emacs ()
+  (interactive)
+  (save-buffers-kill-emacs))
+
+;; Appearance ###################################################################
+
+;; Fonts
+(set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 104)
+
+;; Whitespaces ##################################################################
+
+(setq-default whitespace-style
+              ;; '(face spaces tabs tab-mark trailing))
+              '(face tabs tab-mark trailing))
+
+(custom-set-faces
+ `(whitespace-tab      ((t (:background ,"red"))))
+ `(whitespace-trailing ((t (:background ,"yellow")))))
+
+(global-whitespace-mode t)
+
+;; Undo Tree ####################################################################
+
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode)
+  (setq undo-tree-visualizer-timestamps t
+        undo-tree-auto-save-history nil
+        undo-tree-visualizer-diff t))
+
+;; Surround #####################################################################
+
+(use-package surround
+  :ensure t
+  :bind-keymap ("C-," . surround-keymap))
+
+;; Editorconfig #################################################################
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
+;; Move Text ####################################################################
+
+(use-package move-text
+  :ensure t
+  :bind
+  (("M--" . move-text-region-up)
+   ("M-=" . move-text-region-down)))
+
+;; Multicursors #################################################################
+
+(use-package multiple-cursors
+  :ensure t
+  :bind
+  (("C-<" .   'mc/skip-to-next-like-this)
+   ("C->" .   'mc/mark-next-like-this)
+   ("C-c e" . 'mc/edit-lines)
+   :map mc/keymap
+   ("RET" . nil)
+   ("<return>" . nil))
+  :config
+  (add-to-list 'mc/cmds-to-run-for-all 'self-insert-command))
+
+;; Fill Column ##################################################################
+
+(setq-default fill-column 141)
+(global-display-fill-column-indicator-mode t)
+(setq-default display-fill-column-indicator-column 81)
+
+(use-package visual-fill-column
+  :ensure t)
+
+(setq-default visual-fill-column-center-text t)
+
+(add-hook 'after-init-hook 'global-visual-fill-column-mode)
+
+;; Loading  #####################################################################
+
+(load "~/.config/emacs/config/my-custom.el")
+
+(load "~/.config/emacs/config/keybinds.el")
+
+;; (load "~/.config/emacs/config/colors.el")
+(load "~/.config/emacs/config/alt-colors.el")
+
+(load "~/.config/emacs/config/lsp.el")
+
+(load "~/.config/emacs/config/symbols-outline.el")
+
+(load "~/.config/emacs/config/auto-complete.el")
+
+(load "~/.config/emacs/config/languages.el")
+
+(load "~/.config/emacs/config/snippets.el")
+
+(load "~/.config/emacs/config/mini-buffer.el")
+
+(load "~/.config/emacs/config/prescient.el")
+
+(load "~/.config/emacs/config/github.el")
+
+;; (load "~/.config/emacs/config/visual-fill-column.el")
+
+(load "~/.config/emacs/config/consult.el")
+
+(load "~/.config/emacs/config/avy.el")
+
+(load "~/.config/emacs/config/dired.el")
+
+;; (load "~/.config/emacs/config/treemacs.el")
+
+;; Set customize file
+(setq custom-file "~/.config/emacs/emacs-custom.el")
+(load custom-file :noerror)

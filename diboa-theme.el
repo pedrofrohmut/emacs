@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (require 'autothemer)
 (require 'highlight-numbers)
 

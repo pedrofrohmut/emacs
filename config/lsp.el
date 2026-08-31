@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Eglot ########################################################################
 
 ;; My flavor of eglot. Making it more minimal more like code navigation and some
