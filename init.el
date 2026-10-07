@@ -128,6 +128,7 @@
 (load "~/.config/emacs/config/symbols-outline.el")
 (load "~/.config/emacs/config/lsp.el")
 (load "~/.config/emacs/config/languages.el")
+(load "~/.config/emacs/config/prescient.el")
 
 ;; Set customize file ###########################################################
 (setq custom-file "~/.config/emacs/emacs-custom.el")
