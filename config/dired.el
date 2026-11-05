@@ -16,12 +16,27 @@
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 ;; Sidebar
+;; (use-package dired-sidebar
+;;   :ensure t
+;;   :config
+;;   (setq dired-sidebar-width 48))
+
+;; (keymap-set dired-sidebar-mode-map "f" 'dired-sidebar-subtree-toggle)
+;; (keymap-set dired-sidebar-mode-map "b" 'dired-sidebar-up-directory)
+;; (keymap-global-set "C-\\" 'dired-sidebar-toggle-sidebar)
+
+
+;; Sidebar - New ################################################################
+
+(use-package dired-subtree
+  :ensure t
+  :commands (dired-subtree-toggle dired-subtree-cycle)
+  :config
+  (setq dired-subtree-line-prefix " ")
+  (setq dired-subtree-use-backgrounds nil))
 
 (use-package dired-sidebar
   :ensure t
-  :config
-  (setq dired-sidebar-width 48))
+  :commands (dired-sidebar-toggle-sidebar))
 
-(keymap-set dired-sidebar-mode-map "f" 'dired-sidebar-subtree-toggle)
-(keymap-set dired-sidebar-mode-map "b" 'dired-sidebar-up-directory)
 (keymap-global-set "C-\\" 'dired-sidebar-toggle-sidebar)
